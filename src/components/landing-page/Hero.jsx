@@ -1,12 +1,87 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger, TextPlugin } from "gsap/all";
 import useNavbarContext from "../contexts/useNavbarContext";
 import ScrollOpacity from "../global/ScrollOpacity";
 import SlideIn from "../global/SlideIn";
 import useDevice from "../hooks/useDevice";
+import LogoWrap from "./LogoWrap";
 import Marquee from "./Marquee";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
     const { navlinksLeft } = useNavbarContext();
     const { width: deviceWidth } = useDevice();
+
+    useGSAP(() => {
+        gsap.registerPlugin(ScrollTrigger)
+        gsap.registerPlugin(TextPlugin)
+
+        gsap.timeline()
+            .to("#text1", {
+                textAlign: "end",
+                ease: "none",
+                duration: 0.8,
+            })
+            .to("#text2", {
+                ease: "none",
+                duration: 1.5,
+            })
+
+        // visual animation
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: '.visual',
+                start: '100% 100%',
+                end: '100% 0%',
+                scrub: 1,
+                // markers: true,
+            }
+        })
+            .to('.logoWrap #j', {
+                x: -150,
+                y: 250,
+                rotate: 20,
+                ease: 'none',
+                duration: 5
+            }, 0)
+            .to('.logoWrap #y', {
+                x: -30,
+                y: 150,
+                rotate: -10,
+                ease: 'none',
+                duration: 5
+            }, 0)
+            .to('.logoWrap #o', {
+                x: 0,
+                y: 400,
+                rotate: -10,
+                ease: 'none',
+                duration: 5
+            }, 0)
+            .to('.logoWrap #u', {
+                x: 50,
+                y: 300,
+                rotate: 10,
+                ease: 'none',
+                duration: 5
+            }, 0)
+            .to('.logoWrap #n', {
+                x: 100,
+                y: 100,
+                rotate: -10,
+                ease: 'none',
+                duration: 5
+            }, 0)
+            .to('.logoWrap #g', {
+                x: 50,
+                y: 450,
+                rotate: 20,
+                ease: 'none',
+                duration: 5
+            }, 0)
+    })
 
     return (
         <section className="w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h relative">
@@ -43,6 +118,10 @@ const Hero = () => {
                     </SlideIn>
                 </ScrollOpacity>
             </div>
+
+            <section className="relative w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h">
+                <LogoWrap />
+            </section>
 
             <div className="absolute bottom-0 left-0 w-full">
                 <Marquee>
