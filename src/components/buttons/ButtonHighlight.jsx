@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
 import gsap from "gsap";
+import React, { useRef } from "react";
+import useCursor from "../hooks/useCursor";
 
 const ButtonHighlight = ({
     children,
@@ -12,86 +13,82 @@ const ButtonHighlight = ({
 }) => {
     const btnRef = useRef();
     const highlightRef = useRef();
+    const { setCursorType, setCursorLabel } = useCursor();
 
     const getParams = (e) => {
-        let rect = btnRef.current.getBoundingClientRect();
-        let mx = e.clientX - rect.left;
-        let my = e.clientY - rect.top;
-        let xPos = (mx / rect.width) * 100;
-        let yPos = (my / rect.height) * 100;
-
+        const rect = btnRef.current.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const xPos = (mx / rect.width) * 100;
+        const yPos = (my / rect.height) * 100;
         return { highlight: highlightRef.current, xPos, yPos };
     };
 
     const handleMouseEnter = (e) => {
-        // prevent on mobile
-        // coarse = touch
-        // fine = cursor
+        // custom cursor hover
+        if (!window.matchMedia("(pointer: coarse)").matches) {
+            setCursorType('hovered');
+            setCursorLabel('');
+        }
+        // skip on mobile
         if (window.matchMedia("(pointer: coarse)").matches) return;
-
         const { highlight, xPos, yPos } = getParams(e);
         mouseEnterFunc();
-
         gsap.killTweensOf(highlight);
-
-        gsap
-            .set(highlight, {
-                opacity: 1,
-                clipPath: `circle(20% at ${xPos}% ${yPos}%)`,
-            })
-            .then(() => {
-                moveSpan(e);
-            });
+        gsap.set(highlight, { opacity: 1, clipPath: `circle(20% at ${xPos}% ${yPos}%)` })
+            .then(() => moveSpan(e));
     };
 
     const handleMouseMove = (e) => {
+        if (window.matchMedia("(pointer: coarse)").matches) return;
         moveSpan(e);
     };
 
     const handleMouseLeave = (e) => {
+        // reset custom cursor
+        if (!window.matchMedia("(pointer: coarse)").matches) {
+            setCursorType('default');
+            setCursorLabel('');
+        }
         const { highlight, xPos, yPos } = getParams(e);
         mouseLeaveFunc();
-
-        gsap
-            .to(highlight, {
-                clipPath: `circle(0% at ${xPos}% ${yPos}%)`,
-                duration: 0.25,
-            })
-            .then(() => {
-                gsap.set(highlight, { opacity: 0 });
-            });
+        gsap.to(highlight, { clipPath: `circle(0% at ${xPos}% ${yPos}%)`, duration: 0.25 })
+            .then(() => gsap.set(highlight, { opacity: 0 }));
     };
 
     const moveSpan = (e) => {
         const { highlight, xPos, yPos } = getParams(e);
-
-        gsap.to(highlight, {
-            clipPath: `circle(105% at ${xPos}% ${yPos}%)`,
-            duration: 0.4,
-        });
+        gsap.to(highlight, { clipPath: `circle(105% at ${xPos}% ${yPos}%)`, duration: 0.4 });
     };
 
     const nativeHandleClick = () => {
         if (disabled) return;
         handleClick();
-    }
+    };
 
     return (
         <button
             ref={btnRef}
-            onMouseEnter={(e) => handleMouseEnter(e)}
-            onMouseMove={(e) => handleMouseMove(e)}
-            onMouseLeave={(e) => handleMouseLeave(e)}
+            data-cursor-target
+            onMouseEnter={handleMouseEnter}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
             onClick={nativeHandleClick}
             className={`relative overflow-hidden ${styles} border-1 border-myGray rounded-3xl flex justify-center items-center`}
-            style={{ pointerEvents: disabled ? "none" : "all", opacity: disabled ? 0.4 : 1 }}
+            style={{
+                pointerEvents: disabled ? "none" : "all",
+                opacity: disabled ? 0.4 : 1,
+                cursor: 'none' // hide default pointer
+            }}
         >
             <span
                 ref={highlightRef}
                 className="absolute left-0 top-0 h-full w-full bg-myAccent z-[0] opacity-0 pointer-events-none"
             />
-            {/* Button Content */}
-            <div className="h-fit w-fit relative z-1" style={{ pointerEvents: allowEvents ? "all" : "none" }}>
+            <div
+                className="h-fit w-fit relative z-1"
+                style={{ pointerEvents: allowEvents ? "all" : "none" }}
+            >
                 {children}
             </div>
         </button>

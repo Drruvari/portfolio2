@@ -105,6 +105,7 @@ const Hero = () => {
             <div
                 className={`flex flex-col gap-y-[20px] absolute`}
                 style={{ left: `${deviceWidth > 1023 ? navlinksLeft : 20}px` }}
+                data-cursor-target
             >
                 {
                     deviceWidth > 768 ? (
@@ -156,13 +157,18 @@ const Hero = () => {
 
             <div className="absolute bottom-0 left-0 w-full">
                 <Marquee>
-                    <div className="flex items-center gap-x-[50px] md:gap-x-[100px] opacity-[0.25] ">
-                        <h2 className="text-large-m md:text-large-d text-nowrap">Codevider</h2>
+                    <div className="flex items-center gap-x-[50px] md:gap-x-[100px] opacity-[0.25]">
+                        <h2 className="text-large-m md:text-large-d text-nowrap flex">
+                            {"Codevider".split("").map((char, i) => (
+                                <span key={i} className="inline-block" style={{ display: "inline-block" }}>
+                                    {char}
+                                </span>
+                            ))}
+                        </h2>
                         <span className="block h-[15px] md:h-[20px] w-[120px] md:w-[200px] bg-myBlack rounded-[4px] mr-[50px] md:mr-[100px] translate-y-[100%]" />
                     </div>
                 </Marquee>
             </div>
-
         </section>
     );
 };
