@@ -1,10 +1,11 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, TextPlugin } from "gsap/all";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useNavbarContext from "../contexts/useNavbarContext";
 import ScrollOpacity from "../global/ScrollOpacity";
 import SlideIn from "../global/SlideIn";
+import useCursor from "../hooks/useCursor";
 import useDevice from "../hooks/useDevice";
 import LogoWrap from "./LogoWrap";
 import Marquee from "./Marquee";
@@ -12,10 +13,50 @@ import Marquee from "./Marquee";
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+    const { setCursorType, setCursorLabel } = useCursor();
     const { navlinksLeft } = useNavbarContext();
     const { width: deviceWidth } = useDevice();
     const text1Ref = useRef();
     const text2Ref = useRef();
+
+    const [hoveredText, setHoveredText] = useState(null);
+
+    const handleMouseEnter = (label, id) => {
+        setCursorType('hovered');
+        setCursorLabel(label);
+        setHoveredText(id);
+
+        const el = id === 'text1' ? text1Ref.current : id === 'text2' ? text2Ref.current : null;
+        if (el) {
+            gsap.to(el, {
+                skewX: 2,
+                rotation: 0.5,
+                y: -5,
+                duration: 0.5,
+                ease: 'power3.out',
+            });
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setCursorType('default');
+        setCursorLabel('');
+
+        if (hoveredText) {
+            const el = hoveredText === 'text1' ? text1Ref.current : text2Ref.current;
+            if (el) {
+                gsap.to(el, {
+                    skewX: 0,
+                    rotation: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'power3.out',
+                });
+            }
+        }
+
+        setHoveredText(null);
+    };
 
     useGSAP(() => {
         if (!text1Ref.current || !text2Ref.current) return;
@@ -69,9 +110,21 @@ const Hero = () => {
                     deviceWidth > 768 ? (
                         <ScrollOpacity>
                             <SlideIn key={"desktop"}>
-                                <h1 className="text-45-title md:text-60-title" ref={text1Ref}>Scalable</h1>
-                                <h1 className="text-45-title md:text-60-title" ref={text2Ref}>
-                                    Digital Platforms
+                                <h1
+                                    className="text-45-title md:text-60-title"
+                                    ref={text1Ref}
+                                    onMouseEnter={() => handleMouseEnter('Scalable', 'text1')}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    {hoveredText === 'text1' ? 'Highly Adaptable' : 'Scalable'}
+                                </h1>
+                                <h1
+                                    className="text-45-title md:text-60-title"
+                                    ref={text2Ref}
+                                    onMouseEnter={() => handleMouseEnter('Digital Platforms', 'text2')}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    {hoveredText === 'text2' ? 'Online Solutions' : 'Digital Platforms'}
                                 </h1>
                             </SlideIn>
                         </ScrollOpacity>
@@ -88,16 +141,18 @@ const Hero = () => {
 
                 <ScrollOpacity>
                     <SlideIn delay={0.15}>
-                        <span className="block text-25-body w-[70%] lg:w-full">
+                        <span
+                            className="block text-25-body w-[70%] lg:w-full"
+                            onMouseEnter={() => handleMouseEnter('Web & Mobile Apps')}
+                            onMouseLeave={handleMouseLeave}
+                        >
                             Custom-built web and mobile applications — fast, reliable, and built to grow.
                         </span>
                     </SlideIn>
                 </ScrollOpacity>
             </div>
 
-            <section className="visual relative w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h">
-                <LogoWrap />
-            </section>
+            <LogoWrap />
 
             <div className="absolute bottom-0 left-0 w-full">
                 <Marquee>

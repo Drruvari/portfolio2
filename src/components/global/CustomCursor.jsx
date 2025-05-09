@@ -6,7 +6,7 @@ import "./CustomCursor.css";
 const CustomCursor = () => {
     const cursorRef = useRef(null);
     const followerRef = useRef(null);
-    const { cursorType } = useCursor();
+    const { cursorType, cursorLabel } = useCursor();
 
     useEffect(() => {
         const cursor = cursorRef.current;
@@ -35,37 +35,74 @@ const CustomCursor = () => {
         return () => window.removeEventListener('mousemove', moveCursor);
     }, []);
 
+    useEffect(() => {
+        const follower = followerRef.current;
+        const label = follower?.querySelector('.cursor-label');
+
+        if (!follower) return;
+
+        const tl = gsap.timeline({ defaults: { duration: 0.3, ease: 'power3.out' } });
+
+        if (cursorType === 'hovered') {
+            tl.to(follower, { scale: 2, backgroundColor: '#fff' }, 0)
+                .to(label, { opacity: 1, y: 0 }, 0);
+        } else {
+            tl.to(follower, { scale: 1, backgroundColor: '#fff' }, 0)
+                .to(label, { opacity: 0, y: 10 }, 0);
+        }
+
+        return () => tl.kill();
+    }, [cursorType]);
+
     const isHovering = cursorType !== 'default';
 
     return (
         <>
             <div
-                ref={cursorRef}
-                className="cursor"
-                style={{
-                    width: isHovering ? '30px' : '10px',
-                    height: isHovering ? '30px' : '10px',
-                    backgroundColor: isHovering ? 'transparent' : 'var(--color-myBlack)',
-                    border: isHovering ? '2px solid var(--color-myBlack)' : 'none',
-                    position: 'fixed',
-                    borderRadius: '50%',
-                    pointerEvents: 'none',
-                    zIndex: 9999,
-                    transform: 'translate(-50%, -50%)',
-                    transition: 'width 0.3s, height 0.3s, background-color 0.3s, border 0.3s'
-                }}
-            />
-            <div
                 ref={followerRef}
                 className="cursor-follower"
                 style={{
-                    width: isHovering ? '40px' : '20px',
-                    height: isHovering ? '40px' : '20px',
-                    backgroundColor: 'rgba(93, 234, 178, 0.3)',
+                    width: '60px',
+                    height: '60px',
+                    backgroundColor: 'white',
+                    mixBlendMode: 'difference',
                     position: 'fixed',
                     borderRadius: '50%',
                     pointerEvents: 'none',
                     zIndex: 9998,
+                    transform: 'translate(-50%, -50%)',
+                    transition: 'width 0.3s, height 0.3s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    color: 'black',
+                    textAlign: 'center',
+                    padding: '5px',
+                }}
+            >
+                <span className="cursor-label" style={{
+                    opacity: 0,
+                    transform: 'translateY(10px)',
+                    transition: 'opacity 0.3s, transform 0.3s',
+                    pointerEvents: 'none',
+                }}>
+                    {cursorLabel}
+                </span>
+            </div>
+            <div
+                ref={cursorRef}
+                className="cursor"
+                style={{
+                    width: isHovering ? '5px' : '10px',
+                    height: isHovering ? '5px' : '10px',
+                    backgroundColor: 'white',
+                    mixBlendMode: 'difference',
+                    position: 'fixed',
+                    borderRadius: '50%',
+                    pointerEvents: 'none',
+                    zIndex: 9999,
                     transform: 'translate(-50%, -50%)',
                     transition: 'width 0.3s, height 0.3s'
                 }}

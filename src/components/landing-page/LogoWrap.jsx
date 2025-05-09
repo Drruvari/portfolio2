@@ -9,8 +9,11 @@ import logo6 from "../../assets/codevider/I_L.png";
 import logo2 from "../../assets/codevider/O_L.png";
 import logo9 from "../../assets/codevider/R_L.png";
 import logo5 from "../../assets/codevider/V_L.png";
+import useCursor from "../hooks/useCursor";
 
 export default function LogoWrap() {
+    const { setCursorType } = useCursor();
+
     useEffect(() => {
         const allcontainer = gsap.utils.toArray(".container-item");
         const venueImageWrap = document.querySelector(".container-img-wrap");
@@ -27,12 +30,14 @@ export default function LogoWrap() {
                     duration: 0.4,
                     autoAlpha: 1,
                 });
+                setCursorType("hovered");
             } else if (e.type === "mouseleave") {
                 venueImage.innerText = "";
                 gsap.to(venueImageWrap, {
                     duration: 0.4,
                     autoAlpha: 0,
                 });
+                setCursorType('default');
             }
         }
 
@@ -50,7 +55,7 @@ export default function LogoWrap() {
             link.addEventListener("mouseleave", venueHover);
             link.addEventListener("mousemove", moveVenueImage);
         });
-    }, []);
+    }, [setCursorType]);
 
     const items = [
         { id: "c", src: logo1, label: "Create" },
