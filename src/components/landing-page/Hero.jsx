@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, TextPlugin } from "gsap/all";
+import { useRef } from "react";
 import useNavbarContext from "../contexts/useNavbarContext";
 import ScrollOpacity from "../global/ScrollOpacity";
 import SlideIn from "../global/SlideIn";
@@ -13,75 +14,42 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
     const { navlinksLeft } = useNavbarContext();
     const { width: deviceWidth } = useDevice();
+    const text1Ref = useRef();
+    const text2Ref = useRef();
 
     useGSAP(() => {
-        gsap.registerPlugin(ScrollTrigger)
-        gsap.registerPlugin(TextPlugin)
+        if (!text1Ref.current || !text2Ref.current) return;
+
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
         gsap.timeline()
-            .to("#text1", {
+            .to(text1Ref.current, {
                 textAlign: "end",
                 ease: "none",
                 duration: 0.8,
             })
-            .to("#text2", {
+            .to(text2Ref.current, {
                 ease: "none",
                 duration: 1.5,
-            })
+            });
 
-        // visual animation
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '.visual',
-                start: '100% 100%',
-                end: '100% 0%',
-                scrub: 1,
-                // markers: true,
-            }
-        })
-            .to('.logoWrap #j', {
-                x: -150,
-                y: 250,
-                rotate: 20,
-                ease: 'none',
-                duration: 5
-            }, 0)
-            .to('.logoWrap #y', {
-                x: -30,
-                y: 150,
-                rotate: -10,
-                ease: 'none',
-                duration: 5
-            }, 0)
-            .to('.logoWrap #o', {
-                x: 0,
-                y: 400,
-                rotate: -10,
-                ease: 'none',
-                duration: 5
-            }, 0)
-            .to('.logoWrap #u', {
-                x: 50,
-                y: 300,
-                rotate: 10,
-                ease: 'none',
-                duration: 5
-            }, 0)
-            .to('.logoWrap #n', {
-                x: 100,
-                y: 100,
-                rotate: -10,
-                ease: 'none',
-                duration: 5
-            }, 0)
-            .to('.logoWrap #g', {
-                x: 50,
-                y: 450,
-                rotate: 20,
-                ease: 'none',
-                duration: 5
-            }, 0)
-    })
+        if (document.querySelector('.visual')) {
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.visual',
+                    start: '100% 100%',
+                    end: '100% 0%',
+                    scrub: 1,
+                }
+            })
+                .to('.logoWrap #j', { x: -150, y: 250, rotate: 20, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #y', { x: -30, y: 150, rotate: -10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #o', { x: 0, y: 400, rotate: -10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #u', { x: 50, y: 300, rotate: 10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #n', { x: 100, y: 100, rotate: -10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #g', { x: 50, y: 450, rotate: 20, ease: 'none', duration: 5 }, 0);
+        }
+    }, { dependencies: [text1Ref, text2Ref] });
 
     return (
         <section className="w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h relative">
@@ -93,8 +61,8 @@ const Hero = () => {
                     deviceWidth > 768 ? (
                         <ScrollOpacity>
                             <SlideIn key={"desktop"}>
-                                <h1 className="text-45-title md:text-60-title">Scalable</h1>
-                                <h1 className="text-45-title md:text-60-title">
+                                <h1 className="text-45-title md:text-60-title" ref={text1Ref}>Scalable</h1>
+                                <h1 className="text-45-title md:text-60-title" ref={text2Ref}>
                                     Digital Platforms
                                 </h1>
                             </SlideIn>
@@ -119,7 +87,7 @@ const Hero = () => {
                 </ScrollOpacity>
             </div>
 
-            <section className="relative w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h">
+            <section className="visual relative w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h">
                 <LogoWrap />
             </section>
 

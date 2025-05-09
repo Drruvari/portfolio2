@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { gsap } from "gsap";
+import { useEffect } from "react";
 
 export default function LogoWrap() {
     useEffect(() => {
@@ -56,7 +56,7 @@ export default function LogoWrap() {
     ];
 
     return (
-        <div className="w-full max-w-screen mx-auto mb-96 px-4 lg:px-0 py-8 flex flex-wrap items-center justify-center gap-4 relative">
+        <div className="w-full max-w-screen mx-auto mb-[32rem] px-4 lg:px-0 py-8 flex flex-wrap items-center justify-center gap-4 relative">
             <div className="container-img-wrap fixed top-0 left-0 w-[300px] h-[150px] pointer-events-none z-50">
                 <div className="container-img w-full h-full text-black flex items-center justify-center text-xl md:text-3xl font-bold font-raleway text-center"></div>
             </div>
