@@ -9,6 +9,7 @@ import useNavbarContext from '../contexts/useNavbarContext';
 import SlideIn from '../global/SlideIn';
 import { myEase1, myEase2 } from '../utility/contansts';
 import observeElement from '../utility/customObserver';
+import image from '../../assets/images/image.jpg';
 
 const Footer = () => {
     const { socials, copyEmail, emailCopied } = useNavbarContext();
@@ -37,7 +38,6 @@ const Footer = () => {
         }
 
         observeElement(copyButton, animateBorders);
-
     }, [])
 
     const moveHandler = (e) => {
@@ -62,7 +62,6 @@ const Footer = () => {
         boxY(relY);
     }
 
-
     useGSAP(() => {
         const copyBox = copyBoxRef.current;
         const button = copyButtonRef.current;
@@ -86,8 +85,7 @@ const Footer = () => {
     }
 
     const openEmail = () => {
-        window.location.href =
-            "mailto:hr@codevider.com?subject=Collaboration%20Proposal";
+        window.location.href = "mailto:hr@codevider.com?subject=Collaboration%20Proposal";
     }
 
     return (
@@ -103,8 +101,9 @@ const Footer = () => {
                         <span className='w-[90px] h-[50px] hidden overflow-hidden lg:inline-block rounded-4xl'>
                             <img
                                 className='w-full h-full object-cover'
-                                src="/src/assets/images/image.jpg"
-                                alt="small-headshot" />
+                                src={image}
+                                alt="small-headshot"
+                            />
                         </span>
                     </SlideIn>
 
@@ -113,7 +112,7 @@ const Footer = () => {
                             <span className='w-[90px] h-[50px] overflow-hidden inline-block lg:hidden rounded-4xl'>
                                 <img
                                     className='w-full h-full object-cover'
-                                    src="/src/assets/images/image.jpg"
+                                    src={image}
                                     alt="small-headshot" />
                             </span>
                             <span> Something </span>
@@ -160,7 +159,6 @@ const Footer = () => {
             {/* MOBILE BORDER-LINE */}
             <span className='w-full h-[1px] top-0 left-0 bg-myBlack opacity-25 block mb-[30px] lg:hidden' />
 
-
             {/* DESKTOP COPY EMAIL */}
             <button
                 ref={copyButtonRef}
@@ -193,7 +191,6 @@ const Footer = () => {
                     <span>All Rights Reserved &copy;</span>
                 </SlideIn>
             </div>
-
         </footer>
     )
 }

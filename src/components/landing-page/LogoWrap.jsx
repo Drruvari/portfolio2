@@ -1,5 +1,14 @@
 import { gsap } from "gsap";
 import { useEffect } from "react";
+import logo1 from "../../assets/codevider/C_L.png";
+import logo3 from "../../assets/codevider/D_L.png";
+import logo7 from "../../assets/codevider/D_L1.png";
+import logo4 from "../../assets/codevider/E_L.png";
+import logo8 from "../../assets/codevider/E_L1.png";
+import logo6 from "../../assets/codevider/I_L.png";
+import logo2 from "../../assets/codevider/O_L.png";
+import logo9 from "../../assets/codevider/R_L.png";
+import logo5 from "../../assets/codevider/V_L.png";
 
 export default function LogoWrap() {
     useEffect(() => {
@@ -44,15 +53,15 @@ export default function LogoWrap() {
     }, []);
 
     const items = [
-        { id: "c", src: "/src/assets/codevider/C_L.png", label: "Create" },
-        { id: "o", src: "/src/assets/codevider/O_L.png", label: "Organize" },
-        { id: "d", src: "/src/assets/codevider/D_L.png", label: "Develop" },
-        { id: "e", src: "/src/assets/codevider/E_L.png", label: "Execute" },
-        { id: "v", src: "/src/assets/codevider/V_L.png", label: "Validate" },
-        { id: "i", src: "/src/assets/codevider/I_L.png", label: "Innovate" },
-        { id: "d", src: "/src/assets/codevider/D_L1.png", label: "Deliver" },
-        { id: "e", src: "/src/assets/codevider/E_L1.png", label: "Evolve" },
-        { id: "r", src: "/src/assets/codevider/R_L.png", label: "Revolutionize" },
+        { id: "c", src: logo1, label: "Create" },
+        { id: "o", src: logo2, label: "Organize" },
+        { id: "d", src: logo3, label: "Develop" },
+        { id: "e", src: logo4, label: "Execute" },
+        { id: "v", src: logo5, label: "Validate" },
+        { id: "i", src: logo6, label: "Innovate" },
+        { id: "d", src: logo7, label: "Deliver" },
+        { id: "e", src: logo8, label: "Evolve" },
+        { id: "r", src: logo9, label: "Revolutionize" },
     ];
 
     return (

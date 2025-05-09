@@ -15,6 +15,16 @@ const aboutStory = [
         story:
             "From UI/UX design to full-stack architecture, every project reflects our commitment to quality, efficiency, and forward-thinking development.",
     },
+    {
+        index: "03",
+        story:
+            "Join us on this transformative journey as we redefine the way businesses thrive in the digital landscape.",
+    },
+    {
+        index: "04",
+        story:
+            "Start your journey with us today and unlock the limitless potential of digital transformation.",
+    },
 ];
 
 const About = () => {
