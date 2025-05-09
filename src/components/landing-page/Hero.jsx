@@ -22,9 +22,16 @@ const Hero = () => {
 
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
+        gsap.from([text1Ref.current, text2Ref.current], {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            stagger: 0.3,
+            ease: "power3.out"
+        });
+
         gsap.timeline()
             .to(text1Ref.current, {
-                textAlign: "end",
                 ease: "none",
                 duration: 0.8,
             })
@@ -42,12 +49,13 @@ const Hero = () => {
                     scrub: 1,
                 }
             })
-                .to('.logoWrap #j', { x: -150, y: 250, rotate: 20, ease: 'none', duration: 5 }, 0)
-                .to('.logoWrap #y', { x: -30, y: 150, rotate: -10, ease: 'none', duration: 5 }, 0)
-                .to('.logoWrap #o', { x: 0, y: 400, rotate: -10, ease: 'none', duration: 5 }, 0)
-                .to('.logoWrap #u', { x: 50, y: 300, rotate: 10, ease: 'none', duration: 5 }, 0)
-                .to('.logoWrap #n', { x: 100, y: 100, rotate: -10, ease: 'none', duration: 5 }, 0)
-                .to('.logoWrap #g', { x: 50, y: 450, rotate: 20, ease: 'none', duration: 5 }, 0);
+                .to('.logoWrap #c', { x: -150, y: 250, rotate: 20, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #o', { x: -30, y: 150, rotate: -10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #d', { x: 0, y: 400, rotate: -10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #e', { x: 50, y: 300, rotate: 10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #v', { x: 100, y: 100, rotate: -10, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #i', { x: 50, y: 450, rotate: 20, ease: 'none', duration: 5 }, 0)
+                .to('.logoWrap #r', { x: 50, y: 450, rotate: 20, ease: 'none', duration: 5 }, 0);
         }
     }, { dependencies: [text1Ref, text2Ref] });
 

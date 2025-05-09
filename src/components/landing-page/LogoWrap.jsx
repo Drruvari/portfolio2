@@ -44,15 +44,15 @@ export default function LogoWrap() {
     }, []);
 
     const items = [
-        { src: "/src/assets/codevider/C_L.png", label: "Create" },
-        { src: "/src/assets/codevider/O_L.png", label: "Organize" },
-        { src: "/src/assets/codevider/D_L.png", label: "Develop" },
-        { src: "/src/assets/codevider/E_L.png", label: "Execute" },
-        { src: "/src/assets/codevider/V_L.png", label: "Validate" },
-        { src: "/src/assets/codevider/I_L.png", label: "Innovate" },
-        { src: "/src/assets/codevider/D_L1.png", label: "Deliver" },
-        { src: "/src/assets/codevider/E_L1.png", label: "Evolve" },
-        { src: "/src/assets/codevider/R_L.png", label: "Revolutionize" },
+        { id: "c", src: "/src/assets/codevider/C_L.png", label: "Create" },
+        { id: "o", src: "/src/assets/codevider/O_L.png", label: "Organize" },
+        { id: "d", src: "/src/assets/codevider/D_L.png", label: "Develop" },
+        { id: "e", src: "/src/assets/codevider/E_L.png", label: "Execute" },
+        { id: "v", src: "/src/assets/codevider/V_L.png", label: "Validate" },
+        { id: "i", src: "/src/assets/codevider/I_L.png", label: "Innovate" },
+        { id: "d", src: "/src/assets/codevider/D_L1.png", label: "Deliver" },
+        { id: "e", src: "/src/assets/codevider/E_L1.png", label: "Evolve" },
+        { id: "r", src: "/src/assets/codevider/R_L.png", label: "Revolutionize" },
     ];
 
     return (
@@ -64,6 +64,7 @@ export default function LogoWrap() {
             {items.map((item, index) => (
                 <div
                     key={index}
+                    id={item.id}
                     className="container-item w-[60px] md:w-[80px] lg:w-[100px] xl:w-[120px] transition-all duration-300 ease-in-out hover:scale-125"
                     data-text={item.label}
                 >

@@ -23,9 +23,9 @@ body {
 @theme {
     /* ===== COLOUR ===== */
     --color-myGray: #E3E3E3;
-    --color-myBlack: #000;
+    --color-myBlack: #191818;
     --color-myWhite: #FDFDFD;
-    --color-myAccent: #5DEA7C;
+    --color-myAccent: #5DEAB2;
 
     /* ===== TYPOGRAPHY ===== */
     --font-main: "Neue Montreal", "Sans Serif";
