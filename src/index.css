@@ -1,13 +1,9 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: "Neue Montreal";
-    src: url(assets/fonts/gallery.regular.otf);
+    font-family: "TeknafRegular";
+    src: url(assets/fonts/TeknafRegular-rv0aB.otf);
     font-weight: 400;
-}
-
-button {
-    cursor: pointer;
 }
 
 body {
@@ -28,7 +24,7 @@ body {
     --color-myAccent: #5DEAB2;
 
     /* ===== TYPOGRAPHY ===== */
-    --font-main: "Neue Montreal", "Sans Serif";
+    --font-main: "TeknafRegular", "Sans Serif";
     --text-14-body: 14px;
     --text-16-body--letter-spacing: 0.01ch;
     --text-16-body--line-height: 1.3;
