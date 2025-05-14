@@ -1,23 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const useDevice = () => {
-  const [width, setWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    }
-  
-    window.addEventListener("resize", handleResize);
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        }
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    }
+        window.addEventListener("resize", handleResize);
 
-  }, [])
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        }
 
+    }, [])
 
-  return {width};
+    return { width };
 }
 
 export default useDevice;

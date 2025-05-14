@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: "TeknafRegular";
-    src: url(assets/fonts/TeknafRegular-rv0aB.otf);
-    font-weight: 400;
+    font-family: 'Satoshi';
+    src: url(assets/fonts/Satoshi-Black.otf);
+}
+
+@font-face {
+    font-family: 'Earwig Factory Regular';
+    src: url(assets/fonts/earwig-factory-rg.otf);
 }
 
 body {
@@ -24,7 +28,9 @@ body {
     --color-myAccent: #5DEAB2;
 
     /* ===== TYPOGRAPHY ===== */
-    --font-main: "TeknafRegular", "Sans Serif";
+    --font-main: 'Satoshi';
+    --font-mono: 'Earwig Factory Regular';
+
     --text-14-body: 14px;
     --text-16-body--letter-spacing: 0.01ch;
     --text-16-body--line-height: 1.3;

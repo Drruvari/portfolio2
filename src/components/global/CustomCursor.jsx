@@ -2,10 +2,12 @@ import { gsap } from 'gsap';
 import { useEffect, useRef } from 'react';
 import useCursor from '../hooks/useCursor';
 import "./CustomCursor.css";
+
 const CustomCursor = () => {
     const cursorRef = useRef(null);
     const followerRef = useRef(null);
     const { cursorType, cursorLabel } = useCursor();
+
     useEffect(() => {
         const cursor = cursorRef.current;
         const follower = followerRef.current;
@@ -28,6 +30,7 @@ const CustomCursor = () => {
         window.addEventListener('mousemove', moveCursor);
         return () => window.removeEventListener('mousemove', moveCursor);
     }, []);
+
     useEffect(() => {
         const follower = followerRef.current;
         const label = follower?.querySelector('.cursor-label');
@@ -42,7 +45,9 @@ const CustomCursor = () => {
         }
         return () => tl.kill();
     }, [cursorType]);
+
     const isHovering = cursorType !== 'default';
+
     return (
         <>
             <div
@@ -54,7 +59,6 @@ const CustomCursor = () => {
                     backgroundColor: 'white',
                     mixBlendMode: 'difference',
                     position: 'fixed',
-                    borderRadius: '50%',
                     pointerEvents: 'none',
                     zIndex: 9998,
                     transform: 'translate(-50%, -50%)',
@@ -97,4 +101,5 @@ const CustomCursor = () => {
         </>
     );
 };
+
 export default CustomCursor;

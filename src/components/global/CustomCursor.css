@@ -1,39 +1,45 @@
-html, body {
+html,
+body {
     cursor: none;
-  }
+}
 
-  /* Hide default cursor on interactive elements */
-  button, a,
-  .p-list-con,
-  input,
-  textarea,
-  select,
-  [role="button"] {
+/* Hide default cursor on interactive elements */
+button,
+a,
+.p-list-con,
+input,
+textarea,
+select,
+[role="button"] {
     cursor: none;
-  }
+}
 
-  /* Make sure the cursor works on mobile */
-  @media (max-width: 768px) {
-    html, body,
-    button, a,
+/* Make sure the cursor works on mobile */
+@media (max-width: 768px) {
+
+    html,
+    body,
+    button,
+    a,
     .p-list-con,
     input,
     textarea,
     select,
     [role="button"] {
-      cursor: auto;
+        cursor: auto;
     }
 
-    .cursor, .cursor-follower {
-      display: none;
+    .cursor,
+    .cursor-follower {
+        display: none !important;
     }
-  }
+}
 
-  /* Text highlight effect when cursor is over text */
-  .text-interactive {
+/* Text highlight effect when cursor is over text */
+.text-interactive {
     transition: color 0.3s ease;
-  }
+}
 
-  .text-interactive:hover {
+.text-interactive:hover {
     color: var(--color-myBlack);
-  }
+}

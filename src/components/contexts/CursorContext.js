@@ -9,4 +9,3 @@ export const CursorContext = createContext({
     setCursorLabel: () => { },
     setMousePosition: () => { },
 });
-

@@ -64,7 +64,7 @@ const PreviewModal = ({ projects, activePreview, modalActive }) => {
                             <span className='absolute left-[50%] top-[50%] translate-[-50%]'>Image {i + 1}</span>
                             <img
                                 src={item.preview}
-                                className='w-[86%] border-1 border-black rounded-sm'
+                                className='w-[86%] border-1 border-black'
                             />
                         </div>
                     ))

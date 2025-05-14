@@ -30,8 +30,8 @@ const Notification = () => {
     }, { scope: containerRef.current, dependencies: [emailCopied] })
 
     return (
-        <div ref={containerRef} className="fixed z-[5] left-[35px] bottom-[35px] hidden lg:flex items-center gap-x-[10px] bg-myBlack rounded-[10px] w-[275px] h-[80px] px-[12px] py-[15px] translate-y-[150%] border-2 border-myBlack shadow-2xl">
-            <div className="w-[50px] aspect-square bg-myAccent flex justify-center items-center rounded-[6px]">
+        <div ref={containerRef} className="fixed z-[5] left-[35px] bottom-[35px] hidden lg:flex items-center gap-x-[10px] bg-myBlack w-[275px] h-[80px] px-[12px] py-[15px] translate-y-[150%] border-2 border-myBlack shadow-2xl">
+            <div className="w-[50px] aspect-square bg-myAccent flex justify-center items-center">
                 <Checkmark color={"#000"} />
             </div>
             <div className=" text-myWhite">

@@ -1,15 +1,16 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CopyIcon from '../../assets/icons/CopyIcon';
+import image from '../../assets/images/image.jpg';
 import CustomButton from '../../components/buttons/CustomButton';
 import useDevice from '../../components/hooks/useDevice';
 import useNavbarContext from '../contexts/useNavbarContext';
 import SlideIn from '../global/SlideIn';
 import { myEase1, myEase2 } from '../utility/contansts';
 import observeElement from '../utility/customObserver';
-import image from '../../assets/images/image.jpg';
+import Marquee from './Marquee';
 
 const Footer = () => {
     const { socials, copyEmail, emailCopied } = useNavbarContext();
@@ -89,109 +90,119 @@ const Footer = () => {
     }
 
     return (
-        <footer ref={containerRef} className=' overflow-hidden h-full lg:h-[50vh] w-full px-mobile lg:px-desktop-h flex flex-col justify-between pb-[30px] lg:pb-[50px]' >
-            <div className='flex flex-col lg:flex-row justify-between gap-y-[60px] lg:gap-y-[unset] mb-[60px] lg:mb-[unset]'>
-                {/* "LETS BUILD" ===TEXT=== */}
-                <div className='text-45-title lg:text-60-title flex flex-wrap items-center gap-x-[10px] w-[78%] md:w-[50%] xl:w-[40%] 2xl:w-[30%]'>
-                    <SlideIn>
-                        <span> Let's Build </span>
-                    </SlideIn>
+        <>
+            <Marquee>
+                <div className="flex items-center gap-x-[50px] md:gap-x-[100px] opacity-[0.25]">
+                    <h2 className="text-large-m md:text-large-d whitespace-nowrap">Contact Us</h2>
+                    <span className="block h-[15px] md:h-[20px] w-[120px] md:w-[200px] bg-myBlack mr-[50px] md:mr-[100px] translate-y-[100%]" />
+                </div>
+            </Marquee>
 
-                    <SlideIn>
-                        <span className='w-[90px] h-[50px] hidden overflow-hidden lg:inline-block rounded-4xl'>
-                            <img
-                                className='w-full h-full object-cover'
-                                src={image}
-                                alt="small-headshot"
-                            />
-                        </span>
-                    </SlideIn>
+            <footer ref={containerRef} className='overflow-hidden h-full lg:h-[50vh] w-full px-mobile lg:px-desktop-h flex flex-col justify-between pb-[30px] lg:pb-[50px]'>
 
-                    <SlideIn delay={.10}>
-                        <div className='flex items-center gap-x-[10px] lg:inline-block'>
-                            <span className='w-[90px] h-[50px] overflow-hidden inline-block lg:hidden rounded-4xl'>
+                <div className='flex flex-col lg:flex-row justify-between gap-y-[60px] lg:gap-y-[unset] mb-[60px] lg:mb-[unset]'>
+                    {/* "LETS BUILD" ===TEXT=== */}
+                    <div className='text-45-title lg:text-60-title flex flex-wrap items-center gap-x-[10px] w-[78%] md:w-[50%] xl:w-[40%] 2xl:w-[30%]'>
+                        <SlideIn>
+                            <span> Let's Build </span>
+                        </SlideIn>
+
+                        <SlideIn>
+                            <span className='w-[90px] h-[50px] hidden overflow-hidden lg:inline-block'>
                                 <img
                                     className='w-full h-full object-cover'
                                     src={image}
-                                    alt="small-headshot" />
+                                    alt="small-headshot"
+                                />
                             </span>
-                            <span> Something </span>
+                        </SlideIn>
+
+                        <SlideIn delay={.10}>
+                            <div className='flex items-center gap-x-[10px] lg:inline-block'>
+                                <span className='w-[90px] h-[50px] overflow-hidden inline-block lg:hidden'>
+                                    <img
+                                        className='w-full h-full object-cover'
+                                        src={image}
+                                        alt="small-headshot" />
+                                </span>
+                                <span> Something </span>
+                            </div>
+                        </SlideIn>
+
+                        <SlideIn delay={.10}>
+                            <span> Unreal </span>
+                        </SlideIn>
+                    </div>
+
+                    {/* MOBILE COPY EMAIL */}
+                    <div className='inline-block lg:hidden'>
+                        <CustomButton
+                            icon={<CopyIcon />}
+                            text={'hr@codevider.com'}
+                            full={true}
+                            handleClick={openEmail}
+                        />
+                    </div>
+
+                    {/* SOCIAL LINKS */}
+                    <div className='basis-[30%]' >
+                        <div className='flex justify-between mb-[35px] text-14-body opacity-40'>
+                            <SlideIn>
+                                <span>Socials</span>
+                            </SlideIn>
+                            <SlideIn>
+                                <span>/02</span>
+                            </SlideIn>
                         </div>
-                    </SlideIn>
-
-                    <SlideIn delay={.10}>
-                        <span> Unreal </span>
-                    </SlideIn>
-                </div>
-
-                {/* MOBILE COPY EMAIL */}
-                <div className='inline-block lg:hidden'>
-                    <CustomButton
-                        icon={<CopyIcon />}
-                        text={'hr@codevider.com'}
-                        full={true}
-                        handleClick={openEmail}
-                    />
-                </div>
-
-                {/* SOCIAL LINKS */}
-                <div className='basis-[30%]' >
-                    <div className='flex justify-between mb-[35px] text-14-body opacity-40'>
-                        <SlideIn>
-                            <span>Socials</span>
-                        </SlideIn>
-                        <SlideIn>
-                            <span>/02</span>
-                        </SlideIn>
-                    </div>
-                    <div className='flex justify-between text-16-body'>
-                        {
-                            socials.map((item, i) => (
-                                <SlideIn key={i} delay={.05 * i}>
-                                    <Link key={i} to={item.link} target='_blank'>{item.title}</Link>
-                                </SlideIn>
-                            ))
-                        }
+                        <div className='flex justify-between text-16-body'>
+                            {
+                                socials.map((item, i) => (
+                                    <SlideIn key={i} delay={.05 * i}>
+                                        <Link key={i} to={item.link} target='_blank'>{item.title}</Link>
+                                    </SlideIn>
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* MOBILE BORDER-LINE */}
-            <span className='w-full h-[1px] top-0 left-0 bg-myBlack opacity-25 block mb-[30px] lg:hidden' />
+                {/* MOBILE BORDER-LINE */}
+                <span className='w-full h-[1px] top-0 left-0 bg-myBlack opacity-25 block mb-[30px] lg:hidden' />
 
-            {/* DESKTOP COPY EMAIL */}
-            <button
-                ref={copyButtonRef}
-                onClick={handleClick}
-                onMouseEnter={(e) => { setTrackCursor(true); moveHandler(e) }}
-                onMouseLeave={() => setTrackCursor(false)}
-                className={`relative w-full h-[90px] justify-center transition-opacity duration-[400ms] ${emailCopied ? "opacity-40" : ""} hidden lg:flex`}>
+                {/* DESKTOP COPY EMAIL */}
+                <button
+                    ref={copyButtonRef}
+                    onClick={handleClick}
+                    onMouseEnter={(e) => { setTrackCursor(true); moveHandler(e) }}
+                    onMouseLeave={() => setTrackCursor(false)}
+                    className={`relative w-full h-[90px] justify-center transition-opacity duration-[400ms] ${emailCopied ? "opacity-40" : ""} hidden lg:flex`}>
 
-                <span ref={(el) => bordersRef.current[0] = el} className='absolute w-full h-[1px] top-0 left-0 bg-myBlack opacity-40' />
+                    <span ref={(el) => bordersRef.current[0] = el} className='absolute w-full h-[1px] top-0 left-0 bg-myBlack opacity-40' />
 
-                <span className='flex items-center gap-x-[5px] text-25-body'>
-                    <span className='pt-1'> <CopyIcon size={20} /> </span>
-                    <span>hr@codevider.com</span>
-                </span>
+                    <span className='flex items-center gap-x-[5px] text-25-body'>
+                        <span className='pt-1'> <CopyIcon size={20} /> </span>
+                        <span>hr@codevider.com</span>
+                    </span>
 
-                <span ref={(el) => bordersRef.current[1] = el} className='absolute w-full h-[1px] bottom-0 left-0 bg-myBlack opacity-40' />
+                    <span ref={(el) => bordersRef.current[1] = el} className='absolute w-full h-[1px] bottom-0 left-0 bg-myBlack opacity-40' />
 
-                <div ref={copyBoxRef}
-                    className='h-[70px] w-[70px] bg-myWhite border-1 border-myGray rounded-[70px] flex justify-center items-center absolute top-0 translate-[-50%] left-[25%] pointer-events-none'>
-                    Copy
+                    <div ref={copyBoxRef}
+                        className='h-[70px] w-[70px] bg-myWhite border-1 border-myGray flex justify-center items-center absolute top-0 translate-[-50%] left-[25%] pointer-events-none'>
+                        Copy
+                    </div>
+                </button>
+
+                {/* COPYRIGHTS STUFF */}
+                <div className='w-full flex justify-between'>
+                    <SlideIn>
+                        <span>{new Date().getFullYear()}</span>
+                    </SlideIn>
+                    <SlideIn>
+                        <span>All Rights Reserved &copy;</span>
+                    </SlideIn>
                 </div>
-            </button>
-
-            {/* COPYRIGHTS STUFF */}
-            <div className='w-full flex justify-between'>
-                <SlideIn>
-                    <span>{new Date().getFullYear()}</span>
-                </SlideIn>
-                <SlideIn>
-                    <span>All Rights Reserved &copy;</span>
-                </SlideIn>
-            </div>
-        </footer>
+            </footer>
+        </>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useNavbarContext from '../contexts/useNavbarContext';
 import About from './About';
 import Hero from './Hero';
