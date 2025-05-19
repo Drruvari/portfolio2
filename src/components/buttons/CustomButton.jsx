@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useRef } from "react";
-import { myEase1 } from "../utility/contansts";
+import { myEase1 } from "../utility/constants";
 import ButtonHighlight from "./ButtonHighlight";
 
 const CustomButton = ({

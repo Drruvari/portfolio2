@@ -6,7 +6,9 @@ import "./CustomCursor.css";
 const CustomCursor = () => {
     const cursorRef = useRef(null);
     const followerRef = useRef(null);
-    const { cursorType, cursorLabel } = useCursor();
+    const { cursorType, cursorLabel, cursorContext } = useCursor();
+
+    const hideCursor = cursorType === 'none' || cursorContext === 'none';
 
     useEffect(() => {
         const cursor = cursorRef.current;
@@ -36,15 +38,20 @@ const CustomCursor = () => {
         const label = follower?.querySelector('.cursor-label');
         if (!follower) return;
         const tl = gsap.timeline({ defaults: { duration: 0.3, ease: 'power3.out' } });
+
         if (cursorType === 'hovered') {
-            tl.to(follower, { scale: 2, backgroundColor: '#fff' }, 0)
+            const scale = cursorContext === "logo" ? 3 : 1.4;
+            const bgColor = '#FDFDFD';
+
+            tl.to(follower, { scale, backgroundColor: bgColor }, 0)
                 .to(label, { opacity: 1, y: 0 }, 0);
         } else {
-            tl.to(follower, { scale: 1, backgroundColor: '#fff' }, 0)
+            tl.to(follower, { scale: 1, backgroundColor: '#FDFDFD' }, 0)
                 .to(label, { opacity: 0, y: 10 }, 0);
         }
+
         return () => tl.kill();
-    }, [cursorType]);
+    }, [cursorType, cursorContext]);
 
     const isHovering = cursorType !== 'default';
 
@@ -54,31 +61,40 @@ const CustomCursor = () => {
                 ref={followerRef}
                 className="cursor-follower"
                 style={{
-                    width: '60px',
-                    height: '60px',
-                    backgroundColor: 'white',
+                    width: isHovering ? '120px' : '60px',
+                    height: isHovering ? '120px' : '60px',
+                    backgroundColor: '#FDFDFD',
                     mixBlendMode: 'difference',
                     position: 'fixed',
                     pointerEvents: 'none',
                     zIndex: 9998,
                     transform: 'translate(-50%, -50%)',
-                    transition: 'width 0.3s, height 0.3s',
-                    display: 'flex',
+                    display: hideCursor ? 'none' : 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    flexWrap: 'wrap',
                     fontSize: '12px',
                     fontWeight: 600,
-                    color: 'black',
+                    color: '#191818',
                     textAlign: 'center',
-                    padding: '5px',
+                    padding: '6px',
+                    boxSizing: 'border-box',
                 }}
             >
-                <span className="cursor-label" style={{
-                    opacity: 0,
-                    transform: 'translateY(10px)',
-                    transition: 'opacity 0.3s, transform 0.3s',
-                    pointerEvents: 'none',
-                }}>
+                <span
+                    className="cursor-label"
+                    style={{
+                        maxWidth: '100px',
+                        padding: '0 6px',
+                        wordBreak: 'break-word',
+                        whiteSpace: 'normal',
+                        textAlign: 'center',
+                        opacity: 0,
+                        transform: 'translateY(10px)',
+                        transition: 'opacity 0.3s, transform 0.3s',
+                        pointerEvents: 'none',
+                    }}
+                >
                     {cursorLabel}
                 </span>
             </div>
@@ -86,12 +102,12 @@ const CustomCursor = () => {
                 ref={cursorRef}
                 className="cursor"
                 style={{
-                    width: isHovering ? '5px' : '10px',
-                    height: isHovering ? '5px' : '10px',
-                    backgroundColor: 'white',
+                    display: hideCursor ? 'none' : 'block',
+                    width: isHovering ? '0px' : '10px',
+                    height: isHovering ? '0px' : '10px',
+                    backgroundColor: '#FDFDFD',
                     mixBlendMode: 'difference',
                     position: 'fixed',
-                    borderRadius: '50%',
                     pointerEvents: 'none',
                     zIndex: 9999,
                     transform: 'translate(-50%, -50%)',

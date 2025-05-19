@@ -1,16 +1,15 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
-import React, { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Logo from "../../assets/Logo";
 import CopiedIcon from "../../assets/icons/CopiedIcon";
-import CopyIcon from "../../assets/icons/CopyIcon";
 import CustomButton from "../buttons/CustomButton";
 import useNavbarContext from "../contexts/useNavbarContext";
 import Magnetic from "../global/Magnetic";
 import Notification from "../global/Notification";
 import useDevice from "../hooks/useDevice";
-import { myEase1 } from "../utility/contansts";
+import { myEase1 } from "../utility/constants";
 import Hamburger from "./Hamburger";
 import Menu from "./Menu";
 
@@ -111,7 +110,7 @@ const Navbar = () => {
         lenis.scrollTo(section, {
             duration: 1.2,
             easing: (t) => 1 - Math.pow(1 - t, 3),
-            offset: sectionName.toLowerCase() === "projects" ? -window.innerHeight / 4 : 0
+            offset: sectionName.toLowerCase() === "members" ? -window.innerHeight / 4 : 0
         });
     };
 
@@ -129,9 +128,12 @@ const Navbar = () => {
         <>
             <Notification />
 
-            <div className="fixed left-[25px] z-[3] top-[22px] lg:left-[35px]">
+            <div className="fixed left-[25px] top-[22px] z-30 lg:left-[35px]">
                 <Magnetic>
-                    <button onClick={() => navigateToSection("hero")}>
+                    <button
+                        onClick={() => navigateToSection("hero")}
+                        aria-label="Navigate to Hero Section"
+                    >
                         <Logo />
                     </button>
                 </Magnetic>
@@ -139,14 +141,16 @@ const Navbar = () => {
 
             <nav
                 ref={containerRef}
-                className="fixed left-0 w-full top-0 flex flex-row z-1 justify-between items-center px-mobile lg:px-desktop-h py-[22px]"
+                className="fixed top-0 left-0 w-full z-[3] px-mobile lg:px-desktop-h py-[22px] bg-transparent"
             >
-                <div className="flex justify-between lg:w-[50%] 2xl:w-[40%]">
-                    <div className="w-[24px] aspect-square pointer-events-none bg-transparent" />
+                <div className="flex items-center justify-between">
+                    {/* Left Placeholder for spacing (same size as hamburger) */}
+                    <div className="w-[24px] aspect-square pointer-events-none" />
 
+                    {/* Center nav links on desktop */}
                     <div
                         ref={navlinksRef}
-                        className="hidden lg:flex gap-x-[12px] items-center"
+                        className="hidden lg:flex gap-x-[16px] items-center justify-center"
                     >
                         {navLinks.map((item, i) => (
                             <CustomButton
@@ -156,22 +160,22 @@ const Navbar = () => {
                             />
                         ))}
                     </div>
-                </div>
 
-                <div className="hidden lg:block">
-                    <CustomButton
-                        text={"Copy email"}
-                        activeIcon={<CopiedIcon />}
-                        icon={<CopyIcon />}
-                        handleClick={() => copyEmail()}
-                        disabled={emailCopied}
-                    />
+                    {/* CTA on right */}
+                    <div className="hidden lg:block">
+                        <CustomButton
+                            text={"Copy email"}
+                            activeIcon={<CopiedIcon />}
+                            handleClick={copyEmail}
+                            disabled={emailCopied}
+                        />
+                    </div>
                 </div>
             </nav>
 
             <div
                 ref={hamburgerRef}
-                className="fixed top-[22px] right-[20px] z-[5] lg:left-[50%] lg:translate-x-[-50%] lg:translate-y-[100px] lg:right-[unset] lg:top-[unset] bottom-[35px]"
+                className="fixed top-[22px] right-[20px] z-[5] lg:top-[unset] lg:bottom-[35px] lg:left-1/2 lg:translate-x-[-50%] lg:translate-y-[100px] lg:right-auto"
             >
                 <Hamburger />
             </div>

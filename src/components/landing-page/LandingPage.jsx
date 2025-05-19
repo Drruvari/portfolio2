@@ -2,21 +2,21 @@ import { useEffect, useRef } from 'react';
 import useNavbarContext from '../contexts/useNavbarContext';
 import About from './About';
 import Hero from './Hero';
-import Projects from './Projects';
+import Members from './Members';
 import Testimonials from './Testimonials';
 
 const LandingPage = () => {
     const { setSectionRefs } = useNavbarContext();
     const heroRef = useRef();
     const aboutRef = useRef();
-    const projectsRef = useRef();
+    const membersRef = useRef();
 
     useEffect(() => {
         setSectionRefs(prev => ({
             ...prev,
             hero: heroRef,
             about: aboutRef,
-            projects: projectsRef
+            members: membersRef
         }))
     }, [setSectionRefs])
 
@@ -28,8 +28,8 @@ const LandingPage = () => {
             <section ref={aboutRef}>
                 <About />
             </section>
-            <section ref={projectsRef}>
-                <Projects />
+            <section ref={membersRef}>
+                <Members />
             </section>
 
             <Testimonials />

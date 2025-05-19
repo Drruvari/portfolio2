@@ -2,13 +2,12 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CopyIcon from '../../assets/icons/CopyIcon';
 import image from '../../assets/images/image.jpg';
 import CustomButton from '../../components/buttons/CustomButton';
 import useDevice from '../../components/hooks/useDevice';
 import useNavbarContext from '../contexts/useNavbarContext';
 import SlideIn from '../global/SlideIn';
-import { myEase1, myEase2 } from '../utility/contansts';
+import { COMPANY_EMAIL, EMAIL_SUBJECT, myEase1, myEase2 } from '../utility/constants';
 import observeElement from '../utility/customObserver';
 import Marquee from './Marquee';
 
@@ -45,7 +44,8 @@ const Footer = () => {
         const copyBox = copyBoxRef.current;
         const button = copyButtonRef.current;
 
-        // prevent revert logic from clashing with animate logic
+        if (!button || !copyBox) return;
+
         if (revertInstance.current) {
             gsap.set(copyBox, { clearProps: 'all' });
         }
@@ -66,19 +66,24 @@ const Footer = () => {
     useGSAP(() => {
         const copyBox = copyBoxRef.current;
         const button = copyButtonRef.current;
-        if (deviceWidth < 1023) return;
+        if (deviceWidth < 1023 || !button || !copyBox) return;
 
         if (trackCursor) {
             revertInstance.current = null;
             button.addEventListener("mousemove", moveHandler);
         } else {
             button.removeEventListener("mousemove", moveHandler);
-            // make sure the revert isn't triggered over a previous revert
             if (revertInstance.current) return;
             revertInstance.current = gsap.to(copyBox, { left: "25%", top: 0, duration: .8, delay: .4, ease: myEase1 });
         }
+        // Cleanup event listener
+        return () => {
+            if (button) {
+                button.removeEventListener("mousemove", moveHandler);
+            }
+        }
 
-    }, { scope: containerRef, dependencies: [trackCursor] })
+    }, { scope: containerRef, dependencies: [trackCursor, deviceWidth] })
 
     const handleClick = () => {
         if (emailCopied) return;
@@ -86,7 +91,7 @@ const Footer = () => {
     }
 
     const openEmail = () => {
-        window.location.href = "mailto:hr@codevider.com?subject=Collaboration%20Proposal";
+        window.location.href = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
     }
 
     return (
@@ -137,8 +142,7 @@ const Footer = () => {
                     {/* MOBILE COPY EMAIL */}
                     <div className='inline-block lg:hidden'>
                         <CustomButton
-                            icon={<CopyIcon />}
-                            text={'hr@codevider.com'}
+                            text={COMPANY_EMAIL} // Use constant
                             full={true}
                             handleClick={openEmail}
                         />
@@ -180,8 +184,7 @@ const Footer = () => {
                     <span ref={(el) => bordersRef.current[0] = el} className='absolute w-full h-[1px] top-0 left-0 bg-myBlack opacity-40' />
 
                     <span className='flex items-center gap-x-[5px] text-25-body'>
-                        <span className='pt-1'> <CopyIcon size={20} /> </span>
-                        <span>hr@codevider.com</span>
+                        <span>{COMPANY_EMAIL}</span> {/* Use constant */}
                     </span>
 
                     <span ref={(el) => bordersRef.current[1] = el} className='absolute w-full h-[1px] bottom-0 left-0 bg-myBlack opacity-40' />
@@ -198,7 +201,7 @@ const Footer = () => {
                         <span>{new Date().getFullYear()}</span>
                     </SlideIn>
                     <SlideIn>
-                        <span>All Rights Reserved &copy;</span>
+                        <span>All Rights Reserved ©</span>
                     </SlideIn>
                 </div>
             </footer>

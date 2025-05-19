@@ -5,7 +5,7 @@ import ReactLenis from 'lenis/react'
 import { useEffect, useRef } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import CursorProvider from './components/contexts/CursorProvider';
+import CursorProvider from './components/contexts/CursorProvider'
 import CustomCursor from './components/global/CustomCursor'
 import Layout from './components/Layout'
 
@@ -25,7 +25,6 @@ function App() {
 
         return () => {
             gsap.ticker.remove(update);
-
         }
     }, [])
 

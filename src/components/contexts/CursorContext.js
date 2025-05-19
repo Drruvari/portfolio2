@@ -5,6 +5,7 @@ export const CursorContext = createContext({
     cursorLabel: '',
     mouseX: 0,
     mouseY: 0,
+    setCursorContext: () => { },
     setCursorType: () => { },
     setCursorLabel: () => { },
     setMousePosition: () => { },

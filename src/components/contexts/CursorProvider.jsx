@@ -5,6 +5,7 @@ const CursorProvider = ({ children }) => {
     const [cursorType, setCursorType] = useState('default');
     const [cursorLabel, setCursorLabel] = useState('');
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [cursorContext, setCursorContext] = useState('');
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -21,7 +22,9 @@ const CursorProvider = ({ children }) => {
         setCursorLabel,
         mouseX: mousePos.x,
         mouseY: mousePos.y,
-        setMousePosition: setMousePos
+        setMousePosition: setMousePos,
+        cursorContext,
+        setCursorContext,
     };
 
     return (

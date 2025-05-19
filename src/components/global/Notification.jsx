@@ -1,10 +1,10 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Checkmark from "../../assets/icons/Checkmark";
 import ToastShape from "../../assets/icons/ToastShape";
 import useNavbarContext from "../contexts/useNavbarContext";
-import { myEase1 } from "../utility/contansts";
+import { myEase1 } from "../utility/constants";
 
 const Notification = () => {
     const { emailCopied } = useNavbarContext();

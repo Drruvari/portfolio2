@@ -1,15 +1,14 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import CopiedIcon from "../../assets/icons/CopiedIcon";
-import CopyIcon from "../../assets/icons/CopyIcon";
 import EmailIcon from "../../assets/icons/EmailIcon";
 import CustomButton from "../buttons/CustomButton";
 import useNavbarContext from "../contexts/useNavbarContext";
 import useDevice from "../hooks/useDevice";
-import { myEase1 } from "../utility/contansts";
+import { COMPANY_EMAIL, EMAIL_SUBJECT, myEase1 } from "../utility/constants";
 import CurvedPath from "./CurvedPath";
 
 const Menu = () => {
@@ -26,13 +25,14 @@ const Menu = () => {
     const menuContainerRef = useRef();
     const navLinksRef = useRef([]);
     const lenis = useLenis();
-    const deviceWidth = useDevice();
+    const { width: deviceWidth } = useDevice();
     const blurOverlayRef = useRef();
 
     useEffect(() => {
         if (deviceWidth < 1024) return;
 
         const blur = blurOverlayRef.current;
+        if (!blur) return;
         gsap.killTweensOf(blur);
 
         if (menuOpen) {
@@ -47,9 +47,8 @@ const Menu = () => {
 
     }, [deviceWidth, menuOpen])
 
-    // close desktop menu when navbar is visible
     useEffect(() => {
-        if (window.innerWidth > 1023 && !navbarHidden) {
+        if (deviceWidth > 1023 && !navbarHidden) {
             setMenuOpen(false);
         }
     }, [navbarHidden, deviceWidth, setMenuOpen])
@@ -83,14 +82,16 @@ const Menu = () => {
     );
 
     const openEmail = () => {
-        window.location.href =
-            "mailto:hr@codevider.com?subject=Collaboration%20Proposal";
+        window.location.href = `mailto:${COMPANY_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
     };
 
     const navigateToSection = (sectionName) => {
         const activeSection = sectionRefs[sectionName.toLowerCase()];
+        if (!activeSection || !activeSection.current) {
+            console.error("Section is undefined:", sectionName);
+            return;
+        }
         let section = activeSection.current;
-        if (!section) throw new Error("Section is undefined");
 
         lenis.scrollTo(section, {
             duration: 1.2,
@@ -139,7 +140,7 @@ const Menu = () => {
 
                     <div className="lg:hidden">
                         <CustomButton
-                            text={"hr@codevider.com"}
+                            text={COMPANY_EMAIL}
                             bg={true}
                             full={true}
                             icon={<EmailIcon />}
@@ -153,7 +154,6 @@ const Menu = () => {
                             activeIcon={<CopiedIcon />}
                             bg={true}
                             full={true}
-                            icon={<CopyIcon />}
                             handleClick={() => copyEmail()}
                             disabled={emailCopied}
                         />

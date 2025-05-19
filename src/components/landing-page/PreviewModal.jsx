@@ -1,9 +1,9 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import React, { useRef } from 'react';
-import { myEase1, myEase2 } from '../utility/contansts';
+import { useRef } from 'react';
+import { myEase1, myEase2 } from '../utility/constants';
 
-const PreviewModal = ({ projects, activePreview, modalActive }) => {
+const PreviewModal = ({ members, activePreview, modalActive }) => {
     const previewsRef = useRef();
     const containerRef = useRef();
 
@@ -43,7 +43,7 @@ const PreviewModal = ({ projects, activePreview, modalActive }) => {
         gsap.killTweensOf(previews);
 
         // move the previews to show a new preview on each move
-        const tranlateFactor = 100 / projects.length;
+        const tranlateFactor = 100 / members.length;
 
         gsap.to(previews, {
             yPercent: (-tranlateFactor * activePreview),
@@ -57,14 +57,15 @@ const PreviewModal = ({ projects, activePreview, modalActive }) => {
         <div ref={containerRef} className='hidden lg:block w-[250px] aspect-square pointer-events-none z-[2] translate-[-50%] fixed overflow-hidden opacity-0'>
             <div ref={previewsRef}>
                 {
-                    projects.map((item, i) => (
+                    members.map((item, i) => (
                         <div key={`modal-${i}`} className={`w-[250px] relative aspect-square flex items-center justify-center`}
                             style={{ backgroundColor: item.color }}
                         >
-                            <span className='absolute left-[50%] top-[50%] translate-[-50%]'>Image {i + 1}</span>
+                            {/* <span className='absolute left-[50%] top-[50%] translate-[-50%]'>Image {i + 1}</span> */}
                             <img
                                 src={item.preview}
-                                className='w-[86%] border-1 border-black'
+                                className='w-[86%] border-1 border-myBlack'
+                                alt={item.name}
                             />
                         </div>
                     ))

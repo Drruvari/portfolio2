@@ -3,7 +3,7 @@ import useDevice from "../hooks/useDevice";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
-import { myEase1 } from "../utility/contansts";
+import { myEase1 } from "../utility/constants";
 
 const SplitLineText = ({ text, textstyles }) => {
   const containerRef = useRef();

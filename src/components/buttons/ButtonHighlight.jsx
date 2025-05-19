@@ -13,7 +13,7 @@ const ButtonHighlight = ({
 }) => {
     const btnRef = useRef();
     const highlightRef = useRef();
-    const { setCursorType, setCursorLabel } = useCursor();
+    const { setCursorType, setCursorLabel, setCursorContext } = useCursor();
 
     const getParams = (e) => {
         const rect = btnRef.current.getBoundingClientRect();
@@ -27,8 +27,9 @@ const ButtonHighlight = ({
     const handleMouseEnter = (e) => {
         // custom cursor hover
         if (!window.matchMedia("(pointer: coarse)").matches) {
-            setCursorType('hovered');
+            setCursorType('none');
             setCursorLabel('');
+            setCursorContext("none");
         }
         // skip on mobile
         if (window.matchMedia("(pointer: coarse)").matches) return;
@@ -49,6 +50,7 @@ const ButtonHighlight = ({
         if (!window.matchMedia("(pointer: coarse)").matches) {
             setCursorType('default');
             setCursorLabel('');
+            setCursorContext('');
         }
         const { highlight, xPos, yPos } = getParams(e);
         mouseLeaveFunc();

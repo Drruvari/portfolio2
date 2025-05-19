@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Satoshi';
-    src: url(assets/fonts/Satoshi-Black.otf);
+    src: url(assets/fonts/montreal-regular.otf);
 }
 
 @font-face {
@@ -23,7 +23,7 @@ body {
 @theme {
     /* ===== COLOUR ===== */
     --color-myGray: #E3E3E3;
-    --color-myBlack: #191818;
+    --color-myBlack: #141212;
     --color-myWhite: #FDFDFD;
     --color-myAccent: #5DEAB2;
 

@@ -1,7 +1,12 @@
 import { useRef, useState } from "react";
+import al from "../../assets/images/al.jpg";
+import ed from "../../assets/images/ed.jpg";
+import ez from "../../assets/images/ez.jpg";
+import pt from "../../assets/images/pt.jpg";
 import SplitLineText from "../global/SplitLineText";
+import useCursor from "../hooks/useCursor";
+import MembersList from "./MembersList";
 import PreviewModal from "./PreviewModal";
-import ProjectsList from "./ProjectsList";
 
 const teamMembers = [
     {
@@ -9,7 +14,7 @@ const teamMembers = [
         role: "Managing Partner",
         year: "Joined 2019",
         experience: "15+ years",
-        preview: "/src/assets/images/Placeholder.png",
+        preview: pt,
         color: "#5DEA7C",
     },
     {
@@ -17,7 +22,7 @@ const teamMembers = [
         role: "Finance Manager",
         year: "Joined 2020",
         experience: "10+ years",
-        preview: "/src/assets/images/Placeholder.png",
+        preview: ez,
         color: "#E3E3E3",
     },
     {
@@ -25,7 +30,7 @@ const teamMembers = [
         role: "Multinational Manager",
         year: "Joined 2021",
         experience: "12+ years",
-        preview: "/src/assets/images/Placeholder.png",
+        preview: ed,
         color: "#F2F2F2",
     },
     {
@@ -33,53 +38,67 @@ const teamMembers = [
         role: "Outsourcing Manager",
         year: "Joined 2022",
         experience: "8+ years",
-        preview: "/src/assets/images/Placeholder.png",
+        preview: al,
         color: "#121212",
     },
 ];
 
-const Projects = () => {
+const Members = () => {
     const [activePreview, setActivePreview] = useState(0);
     const [modalActive, setModalActive] = useState(false);
     const containerRef = useRef();
+    const { setCursorType, setCursorContext } = useCursor();
+
+    const handleEnter = () => {
+        setModalActive(true);
+        // hide custom cursor
+        setCursorType("none");
+        setCursorContext("none");
+    };
+
+    const handleLeave = () => {
+        setModalActive(false);
+        // restore default custom cursor
+        setCursorType("default");
+        setCursorContext("");
+    };
 
     return (
         <section
             ref={containerRef}
-            onMouseEnter={() => setModalActive(true)}
-            onMouseLeave={() => setModalActive(false)}
-            className="w-full h-fit text-60-title relative group"
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+            className="w-full h-fit text-60-title relative group cursor-default"
         >
-            <div className=" relative flex justify-between items-center w-full h-[40px] px-mobile lg:px-desktop-h opacity-45 text-14-body">
+            <div className="relative flex justify-between items-center w-full h-[40px] px-mobile lg:px-desktop-h opacity-45 text-14-body">
                 <div className="basis-[50%] lg:basis-[20%] text-left">
-                    <SplitLineText text={"Full Name"} />
+                    <SplitLineText text="Full Name" />
                 </div>
 
                 <div className="basis-[50%] justify-between hidden lg:flex">
-                    <SplitLineText text={"Role"} />
-                    <SplitLineText text={"Experience"} />
+                    <SplitLineText text="Role" />
+                    <SplitLineText text="Experience" />
                 </div>
 
                 <div className="basis-[50%] lg:basis-[20%] text-right">
-                    <SplitLineText text={"Joined"} />
+                    <SplitLineText text="Joined" />
                 </div>
             </div>
 
             <div>
                 {teamMembers.map(({ name, role, experience, year }, i) => (
-                    <ProjectsList
+                    <MembersList
                         key={i}
                         name={name}
-                        services={role}
-                        duration={experience}
+                        role={role}
+                        experience={experience}
                         year={year}
                         handleMouseEnter={() => setActivePreview(i)}
                     />
-                )
-                )}
+                ))}
 
                 <PreviewModal
-                    projects={teamMembers}
+                    members={teamMembers}
                     activePreview={activePreview}
                     modalActive={modalActive}
                 />
@@ -88,4 +107,4 @@ const Projects = () => {
     );
 };
 
-export default Projects;
+export default Members;

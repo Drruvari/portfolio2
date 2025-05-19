@@ -1,15 +1,15 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import SplitLineText from "../global/SplitLineText";
-import { myEase2 } from "../utility/contansts";
+import { myEase2 } from "../utility/constants";
 import observeElement from "../utility/customObserver";
 
-const ProjectsList = ({
-    name = "Client Website",
-    services = "Design & Development",
-    duration = "14 weeks",
-    year = "2025",
+const MembersList = ({
+    name = "",
+    role = "",
+    experience = "",
+    year = "",
     handleMouseEnter = () => null
 }) => {
     const containerRef = useRef();
@@ -110,7 +110,6 @@ const ProjectsList = ({
         }
     }
 
-
     return (
         <button
             ref={containerRef}
@@ -126,10 +125,9 @@ const ProjectsList = ({
                 <SplitLineText text={name} textstyles={"p-list-start-text"} />
             </div>
 
-
             <div className="basis-[50%] hidden lg:flex justify-between">
-                <SplitLineText text={services} />
-                <SplitLineText text={duration} />
+                <SplitLineText text={role} />
+                <SplitLineText text={experience} />
             </div>
 
             <div className="basis-[50%] lg:basis-[20%] text-right">
@@ -137,9 +135,8 @@ const ProjectsList = ({
             </div>
 
             <span ref={(el) => bordersRef.current[1] = el} className="absolute left-[20px] lg:left-[35px] right-[20px] lg:right-[35px] bottom-0 h-[1px] bg-myBlack" />
-
         </button>
     );
 };
 
-export default ProjectsList;
+export default MembersList;

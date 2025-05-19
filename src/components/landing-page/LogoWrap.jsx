@@ -1,71 +1,45 @@
-import { gsap } from "gsap";
-import { useEffect } from "react";
-import useCursor from "../hooks/useCursor";
+import logo1 from "../../assets/codevider/C_L.png";
+import logo3 from "../../assets/codevider/D_L.png";
+import logo7 from "../../assets/codevider/D_L1.png";
+import logo4 from "../../assets/codevider/E_L.png";
+import logo8 from "../../assets/codevider/E_L1.png";
+import logo6 from "../../assets/codevider/I_L.png";
+import logo2 from "../../assets/codevider/O_L.png";
+import logo9 from "../../assets/codevider/R_L.png";
+import logo5 from "../../assets/codevider/V_L.png";
 
-export default function LogoWrap() {
-    const { setCursorType, setCursorLabel } = useCursor();
-
-    useEffect(() => {
-        const allcontainer = gsap.utils.toArray(".container-item");
-        const venueImageWrap = document.querySelector(".container-img-wrap");
-        const venueImage = document.querySelector(".container-img");
-
-        function venueHover(e) {
-            if (e.type === "mouseenter") {
-                const text = e.target.dataset.text;
-                gsap.set(venueImage, { backgroundImage: "none" });
-                venueImage.innerText = text;
-                gsap.to(venueImageWrap, { duration: 0.4, autoAlpha: 1 });
-                setCursorType("hovered");
-            } else if (e.type === "mouseleave") {
-                venueImage.innerText = "";
-                gsap.to(venueImageWrap, { duration: 0.4, autoAlpha: 0 });
-                setCursorType("default");
-            }
-        }
-
-        function moveVenueImage(e) {
-            gsap.to(venueImageWrap, { x: e.clientX, y: e.clientY });
-        }
-
-        allcontainer.forEach((link) => {
-            link.addEventListener("mouseenter", venueHover);
-            link.addEventListener("mouseleave", venueHover);
-            link.addEventListener("mousemove", moveVenueImage);
-        });
-    }, [setCursorType]);
-
-    const items = [
-        { id: "C", label: "Create" },
-        { id: "O", label: "Organize" },
-        { id: "D", label: "Design" },
-        { id: "E", label: "Execute" },
-        { id: "V", label: "Visualize" },
-        { id: "I", label: "Implement" },
-        { id: "D", label: "Design" },
-        { id: "E", label: "Execute" },
-        { id: "R", label: "Reorganize" },
-    ];
-
+const LogoWrap = () => {
     return (
-        <div className="w-full mx-auto px-4 md:px-8 py-8 flex flex-wrap items-center justify-center gap-2 md:gap-4 relative">
-            {items.map((item, i) => (
-                <div
-                    key={i}
-                    className="container-item transition-transform duration-300 ease-in-out hover:scale-110 md:hover:scale-125"
-                    onMouseEnter={() => {
-                        setCursorLabel(item.label);
-                        setCursorType("hovered");
-                    }}
-                    onMouseLeave={() => {
-                        setCursorType("default");
-                    }}
-                >
-                    <div className="text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[8rem] xl:text-[12rem] 2xl:text-[16rem] font-mono w-full">
-                        {item.id}
-                    </div>
-                </div>
-            ))}
+        <div className="logoWrap w-full flex flex-nowrap justify-between">
+            <span className="w-[16%]">
+                <img id="c" src={logo1} alt="Letter C" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="o" src={logo2} alt="Letter O" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="d" src={logo3} alt="Letter D" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="e" src={logo4} alt="Letter E" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="v" src={logo5} alt="Letter V" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="i" src={logo6} alt="Letter I" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="d1" src={logo7} alt="Letter D" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="e1" src={logo8} alt="Letter E" className="w-full" />
+            </span>
+            <span className="w-[16%]">
+                <img id="r" src={logo9} alt="Letter R" className="w-full" />
+            </span>
         </div>
-    );
+    )
 }
+
+export default LogoWrap;

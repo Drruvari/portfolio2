@@ -1,6 +1,7 @@
 import { useState } from "react";
-import NavbarContext from "./NavbarContext";
 import { navLinks, socials } from "../../lib/navbarData";
+import { COMPANY_EMAIL } from "../utility/constants";
+import NavbarContext from "./NavbarContext";
 
 const NavbarContextProvider = ({ children }) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -10,13 +11,13 @@ const NavbarContextProvider = ({ children }) => {
     const [navlinksLeft, setNavlinksLeft] = useState(0);
 
     const copyEmail = async () => {
-        const email = "hr@codevider.com";
+        const email = COMPANY_EMAIL;
         try {
             await navigator.clipboard.writeText(email);
             setEmailCopied(true);
             setTimeout(() => setEmailCopied(false), 2000);
         } catch (error) {
-            throw new Error(error);
+            console.error("Failed to copy email: ", error);
         }
     };
 
