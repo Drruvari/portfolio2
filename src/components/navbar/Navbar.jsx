@@ -150,7 +150,7 @@ const Navbar = () => {
                     {/* Center nav links on desktop */}
                     <div
                         ref={navlinksRef}
-                        className="hidden lg:flex gap-x-[16px] items-center justify-center"
+                        className="hidden lg:flex gap-x-[16px] items-center justify-center text-myWhite"
                     >
                         {navLinks.map((item, i) => (
                             <CustomButton
@@ -162,7 +162,7 @@ const Navbar = () => {
                     </div>
 
                     {/* CTA on right */}
-                    <div className="hidden lg:block">
+                    <div className="hidden lg:block text-myWhite">
                         <CustomButton
                             text={"Copy email"}
                             activeIcon={<CopiedIcon />}

@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Satoshi';
-    src: url(assets/fonts/montreal-regular.otf);
+    src: url(assets/fonts/TeknafRegular-rv0aB.otf);
 }
 
 @font-face {
@@ -25,7 +25,7 @@ body {
     --color-myGray: #E3E3E3;
     --color-myBlack: #141212;
     --color-myWhite: #FDFDFD;
-    --color-myAccent: #5DEAB2;
+    --color-myAccent: #2469FF;
 
     /* ===== TYPOGRAPHY ===== */
     --font-main: 'Satoshi';
