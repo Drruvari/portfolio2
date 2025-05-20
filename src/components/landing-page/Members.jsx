@@ -1,47 +1,9 @@
 import { useRef, useState } from "react";
-import al from "../../assets/images/al.jpg";
-import ed from "../../assets/images/ed.jpg";
-import ez from "../../assets/images/ez.jpg";
-import pt from "../../assets/images/pt.jpg";
 import SplitLineText from "../global/SplitLineText";
 import useCursor from "../hooks/useCursor";
 import MembersList from "./MembersList";
 import PreviewModal from "./PreviewModal";
-
-const teamMembers = [
-    {
-        name: "Pasho Toska",
-        role: "Managing Partner",
-        year: "Joined 2019",
-        experience: "15+ years",
-        preview: pt,
-        color: "#5DEA7C",
-    },
-    {
-        name: "Ervin Ziko",
-        role: "Finance Manager",
-        year: "Joined 2020",
-        experience: "10+ years",
-        preview: ez,
-        color: "#E3E3E3",
-    },
-    {
-        name: "Erion Domi",
-        role: "Multinational Manager",
-        year: "Joined 2021",
-        experience: "12+ years",
-        preview: ed,
-        color: "#F2F2F2",
-    },
-    {
-        name: "Altin Luli",
-        role: "Outsourcing Manager",
-        year: "Joined 2022",
-        experience: "8+ years",
-        preview: al,
-        color: "#121212",
-    },
-];
+import { teamMembers } from "../global/DummyData";
 
 const Members = () => {
     const [activePreview, setActivePreview] = useState(0);

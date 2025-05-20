@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useRef } from "react";
 import useNavbarContext from "../contexts/useNavbarContext";
 import RotatingText from "../global/RotatingText";
@@ -6,7 +7,6 @@ import SlideIn from "../global/SlideIn";
 import useCursor from "../hooks/useCursor";
 import useDevice from "../hooks/useDevice";
 import Marquee from "./Marquee";
-import Squares from "./Squares";
 
 const Hero = () => {
     const { navlinksLeft } = useNavbarContext();
@@ -27,20 +27,10 @@ const Hero = () => {
                 setCursorContext("");
                 setCursorLabel("");
             }}
-            className="overflow-hidden w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h relative will-change-transform"
+            className="relative overflow-hidden w-full h-[100dvh] lg:h-screen flex items-center lg:px-desktop-h will-change-transform bg-myBlack"
             style={{ backfaceVisibility: "hidden" }}
         >
-            <div className="absolute inset-0 z-0">
-                <Squares
-                    speed={0.5}
-                    squareSize={40}
-                    direction="diagonal"
-                    borderColor="#222"
-                    hoverFillColor="#FDFDFD"
-                />
-            </div>
-
-            <div
+            <motion.div
                 className="flex flex-col gap-y-[20px] absolute left-[20px] lg:left-1/2 lg:-translate-x-1/2 text-myWhite"
                 style={
                     deviceWidth > 1023 && navlinksLeft < deviceWidth / 3
@@ -77,9 +67,9 @@ const Hero = () => {
                         </span>
                     </SlideIn>
                 </ScrollOpacity>
-            </div>
+            </motion.div>
 
-            <div className="absolute bottom-0 left-0 w-full">
+            <div className="absolute bottom-0 left-0 w-full mb-16">
                 <Marquee>
                     <div className="flex items-center gap-x-[50px] md:gap-x-[100px] opacity-[0.25]">
                         <h2 className="text-large-m md:text-large-d text-nowrap text-myWhite">

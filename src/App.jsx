@@ -42,7 +42,12 @@ function App() {
                 <CustomCursor />
                 <BrowserRouter>
                     <Routes>
-                        <Route path='/' element={<Layout />} />
+                        <Route
+                            path='/'
+                            element={
+                                <Layout />
+                            }
+                        />
                     </Routes>
                 </BrowserRouter>
             </CursorProvider>
