@@ -79,6 +79,8 @@ const CustomCursor = () => {
                     textAlign: 'center',
                     padding: '6px',
                     boxSizing: 'border-box',
+                    borderRadius: '50%',
+                    transition: 'width 0.3s, height 0.3s, background-color 0.3s',
                 }}
             >
                 <span
@@ -111,7 +113,8 @@ const CustomCursor = () => {
                     pointerEvents: 'none',
                     zIndex: 9999,
                     transform: 'translate(-50%, -50%)',
-                    transition: 'width 0.3s, height 0.3s'
+                    transition: 'width 0.3s, height 0.3s',
+                    borderRadius: '50%',
                 }}
             />
         </>

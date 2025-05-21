@@ -15,7 +15,6 @@ const Testimonials = () => {
     const [isNext, setIsNext] = useState(true);
     const reviewsNo = testimonials.length;
 
-
     useGSAP(() => {
         const split = SplitText.create(".testimonials-desc-text", {
             type: "lines",

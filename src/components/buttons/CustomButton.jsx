@@ -50,14 +50,14 @@ const CustomButton = ({
 
     return (
         <ButtonHighlight
-            styles={`px-[22px] py-[8px] ${bg ? "bg-myGray" : ""} ${full ? "w-full py-[20px]" : ""
+            styles={`px-[22px] py-[8px] ${bg ? "bg-myGray" : ""} ${full ? "w-full py-[20px] rounded-4xl" : ""
                 }`}
             mouseEnterFunc={() => animteText(true)}
             mouseLeaveFunc={handleMouseleave}
             handleClick={nativeHandleClick}
             disabled={disabled}
         >
-            <div className="overflow-hidden flex gap-x-[6px] items-center relative text-16-body">
+            <div className="overflow-hidden flex gap-x-[6px] items-center relative text-25-body">
                 {/* Icon */}
                 {icon ? (
                     <>

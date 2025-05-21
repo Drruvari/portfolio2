@@ -12,7 +12,7 @@
   color: var(--color-myAccent);
 }
 
-.p-list-start-text, 
+.p-list-start-text,
 .p-list-end-text {
   transition: transform .25s cubic-bezier(0.40, 0, 0.24, 1);
 }
@@ -23,4 +23,20 @@
 
 .p-list-con:hover .p-list-end-text {
   transform: translateX(-12px);
+}
+
+
+/* ARROW ICON */
+.arrow-icon-parent path.arrow-icon {
+  transition: stroke 200ms linear;
+}
+
+.arrow-icon-parent:hover path.arrow-icon {
+  stroke: var(--color-myBlack);
+}
+
+@media screen and (max-width: 1023px) {
+  .arrow-icon-parent:hover path.arrow-icon {
+    stroke: var(--color-myWhite);
+  }
 }

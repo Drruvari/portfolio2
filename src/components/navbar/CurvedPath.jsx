@@ -1,6 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import useNavbarContext from "../contexts/useNavbarContext";
 import { myEase1 } from "../utility/constants";
 

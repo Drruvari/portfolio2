@@ -43,8 +43,7 @@ const Hamburger = () => {
     );
 
     return (
-        <div
-        >
+        <div className="z-50">
             <Magnetic>
                 <ButtonHighlight
                     handleClick={() => setMenuOpen(!menuOpen)}
@@ -60,12 +59,12 @@ const Hamburger = () => {
                     >
                         <span
                             ref={firstBarRef}
-                            className="w-[24px] h-[1px] bg-myBlack lg:bg-myWhite group-hover:bg-myBlack origin-center"
+                            className="w-[24px] h-[1px] bg-myAccent lg:bg-myWhite group-hover:bg-myBlack origin-center"
                             style={{ backgroundColor: menuOpen ? "#141212" : "" }}
                         ></span>
                         <span
                             ref={secBarRef}
-                            className="w-[24px] h-[1px] bg-myBlack lg:bg-myWhite group-hover:bg-myBlack origin-center"
+                            className="w-[24px] h-[1px] bg-myAccent lg:bg-myWhite group-hover:bg-myBlack origin-center"
                             style={{ backgroundColor: menuOpen ? "#141212" : "" }}
                         ></span>
                     </div>

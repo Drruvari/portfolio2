@@ -3,9 +3,7 @@ import useNavbarContext from '../contexts/useNavbarContext';
 import About from './About';
 import Hero from './Hero';
 import Members from './Members';
-import SlidingImages from './SlidingImages';
 import Testimonials from './Testimonials';
-import Contact from './Contact';
 
 const LandingPage = () => {
     const { setSectionRefs } = useNavbarContext();
@@ -20,7 +18,7 @@ const LandingPage = () => {
             hero: heroRef,
             about: aboutRef,
             members: membersRef,
-            testimonials: testimonialsRef
+            testimonials: testimonialsRef,
         }))
     }, [setSectionRefs])
 
@@ -37,10 +35,6 @@ const LandingPage = () => {
             </section>
             <section ref={testimonialsRef}>
                 <Testimonials />
-            </section>
-            <section className="overflow-x-hidden">
-                <SlidingImages />
-                <Contact />
             </section>
         </div>
     )

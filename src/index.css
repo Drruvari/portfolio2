@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'Satoshi';
-    src: url(assets/fonts/gallery.regular.otf);
+    font-family: 'NeueMachina-Regular';
+    src: url(assets/fonts/PPFraktionMono-Regular.otf);
 }
 
 @font-face {
-    font-family: 'Earwig Factory Regular';
-    src: url(assets/fonts/earwig-factory-rg.otf);
+    font-family: 'TypoDraftDemo';
+    src: url(assets/fonts/TypoDraftDemo.otf);
 }
 
 body {
@@ -24,12 +24,13 @@ body {
     /* ===== COLOUR ===== */
     --color-myGray: #E3E3E3;
     --color-myBlack: #141212;
+    --color-myDusk: #121212;
     --color-myWhite: #FDFDFD;
     --color-myAccent: #2469FF;
 
     /* ===== TYPOGRAPHY ===== */
-    --font-main: 'Satoshi';
-    --font-mono: 'Earwig Factory Regular';
+    --font-main: 'NeueMachina-Regular';
+    --font-mono: 'TypoDraftDemo';
 
     --text-14-body: 14px;
     --text-16-body--letter-spacing: 0.01ch;
@@ -72,4 +73,7 @@ body {
     /* ===== PADDING ===== */
     --padding-desktop-h: 35px;
     --padding-mobile: 25px;
+
+    /* ===== SHADOW ===== */
+    --shadow-testimonials: -10px -35px 35px 35px rgba(0, 0, 0, 0.25);
 }

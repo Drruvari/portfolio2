@@ -7,6 +7,7 @@ import SlideIn from "../global/SlideIn";
 import useCursor from "../hooks/useCursor";
 import useDevice from "../hooks/useDevice";
 import Marquee from "./Marquee";
+import pattern from "../../assets/images/Burst.svg";
 
 const Hero = () => {
     const { navlinksLeft } = useNavbarContext();
@@ -40,9 +41,13 @@ const Hero = () => {
             >
                 <ScrollOpacity>
                     <h1 className="text-45-title md:text-60-title flex gap-1 items-center">
+                        <span className="font-black">Codevider</span>
+                    </h1>
+                    <h1 className="text-45-title md:text-60-title font-bold flex items-center">
+                        Innovating Through
                         <div className="relative inline-block overflow-hidden">
                             <RotatingText
-                                texts={['Code', 'Pro', 'Di']}
+                                texts={['Code', 'Design', 'Development']}
                                 mainClassName="px-2 sm:px-2 md:px-3 bg-myAccent font-black text-myBlack overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center"
                                 staggerFrom={"last"}
                                 initial={{ y: "100%" }}
@@ -53,10 +58,6 @@ const Hero = () => {
                                 rotationInterval={2000}
                             />
                         </div>
-                        <span className="font-black">vider</span>
-                    </h1>
-                    <h1 className="text-45-title md:text-60-title font-bold">
-                        Innovating Through Code
                     </h1>
                 </ScrollOpacity>
 
@@ -69,13 +70,14 @@ const Hero = () => {
                 </ScrollOpacity>
             </motion.div>
 
-            <div className="absolute bottom-0 left-0 w-full mb-16">
+            <div className="absolute bottom-0 left-0 w-full mb-16 font-main">
                 <Marquee>
                     <div className="flex items-center gap-x-[50px] md:gap-x-[100px] opacity-[0.25]">
                         <h2 className="text-large-m md:text-large-d text-nowrap text-myWhite">
                             Codevider
                         </h2>
-                        <span className="block h-[15px] md:h-[20px] w-[120px] md:w-[200px] bg-myWhite rounded-[4px] mr-[50px] md:mr-[100px] translate-y-[100%]" />
+                        {/* <span className="block h-[15px] md:h-[20px] w-[120px] md:w-[200px] bg-myWhite rounded-[4px] mr-[50px] md:mr-[100px] translate-y-[100%]" /> */}
+                        <img src={pattern} alt="Logo" className="block mr-[50px] md:mr-[100px]" />
                     </div>
                 </Marquee>
             </div>

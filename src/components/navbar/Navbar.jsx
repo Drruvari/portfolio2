@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { useLenis } from "lenis/react";
 import { useLayoutEffect, useRef } from "react";
 import Logo from "../../assets/Logo";
-import CopiedIcon from "../../assets/icons/CopiedIcon";
 import CustomButton from "../buttons/CustomButton";
 import useNavbarContext from "../contexts/useNavbarContext";
 import Magnetic from "../global/Magnetic";
@@ -162,14 +161,14 @@ const Navbar = () => {
                     </div>
 
                     {/* CTA on right */}
-                    <div className="hidden lg:block text-myWhite">
+                    {/* <div className="hidden lg:block text-myWhite">
                         <CustomButton
                             text={"Copy email"}
                             activeIcon={<CopiedIcon />}
                             handleClick={copyEmail}
                             disabled={emailCopied}
                         />
-                    </div>
+                    </div> */}
                 </div>
             </nav>
 
