@@ -13,7 +13,7 @@ import Hamburger from "./Hamburger";
 import Menu from "./Menu";
 
 const Navbar = () => {
-    const { navLinks, sectionRefs, setNavbarHidden, copyEmail, setNavlinksLeft, emailCopied } = useNavbarContext();
+    const { navLinks, sectionRefs, setNavbarHidden, setNavlinksLeft } = useNavbarContext();
     const lenis = useLenis();
     const containerRef = useRef();
     const hamburgerRef = useRef();

@@ -1,17 +1,35 @@
 import { MoveDown, MoveRight } from "lucide-react";
+import { useRef } from "react";
 import StickyRounds from "../animations/StickyRounds";
+import useNavbarContext from "../contexts/useNavbarContext";
+import useDevice from "../hooks/useDevice";
 import ScrollAnimationText from "../scrollAnimationText/scrollAnimationText";
-import TextMask from "../textmask/TextMask";
+import TextMask from "../text-mask/TextMask";
 
 function HeroSection() {
+    const { navlinksLeft } = useNavbarContext();
+    const { width: deviceWidth } = useDevice();
+    const heroRef = useRef(null);
+
     const textArray = [
-        { text: "Renowned" },
-        { text: "Creative" },
-        { text: "Enginner" },
+        { text: "Innovate" },
+        { text: "Collaborate" },
+        { text: "Deploy" },
     ];
+
     return (
-        <div className="h-screen relative">
-            <div className="absolute top-[30%] md:top-1/3 px-[20px] md:px-[70px] font-thin text-sm">
+        <section
+            ref={heroRef}
+            className="h-screen relative bg-myBlack"
+        >
+            <div
+                className="absolute top-[30%] md:top-1/3 px-[20px] md:px-[70px] font-main text-sm"
+                style={
+                    deviceWidth > 1023 && navlinksLeft < deviceWidth / 3
+                        ? { left: `${navlinksLeft}px`, transform: "none" }
+                        : {}
+                }
+            >
                 <span className="hidden md:flex justify-center items-center">
                     Hover
                     <MoveRight />
@@ -27,7 +45,7 @@ function HeroSection() {
                 <ScrollAnimationText textArray={textArray} animateData="top" />
             </div>
             <StickyRounds />
-        </div>
+        </section>
     );
 }
 

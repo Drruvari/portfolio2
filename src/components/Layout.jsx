@@ -12,7 +12,7 @@ const Layout = () => {
     useEffect(() => {
         setSectionRefs(prev => ({
             ...prev,
-            contacts: footerRef
+            contact: footerRef
         }))
     }, [setSectionRefs])
 

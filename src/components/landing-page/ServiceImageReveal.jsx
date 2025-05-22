@@ -3,20 +3,20 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { myEase1 } from "../utility/constants";
 
-const TestimonialImageReveal = ({
-    testimonials,
+const ServiceImageReveal = ({
+    services,
     activeIndex,
     allowNavigation,
     isNext
 }) => {
-    const total = testimonials.length;
+    const total = services.length;
     const containerRef = useRef();
     const prevIndex = useRef(activeIndex);
     const layers = useRef([...Array(total).keys()].reverse());
 
     useGSAP(
         () => {
-            const images = document.querySelectorAll(".testimonial-image");
+            const images = document.querySelectorAll(".services-image");
             const prev = prevIndex.current;
             const prevImage = images[prev];
 
@@ -125,10 +125,10 @@ const TestimonialImageReveal = ({
             className="relative w-[450px] aspect-[3/3.6]"
             style={{ rotate: "-4deg" }}
         >
-            {testimonials.map(({ image }, i) => (
+            {services.map(({ image }, i) => (
                 <div
                     key={"client-image" + i}
-                    className={`absolute h-full w-full overflow-hidden shadow-testimonials testimonial-image border-2 border-myGray/30`}
+                    className={`absolute h-full w-full overflow-hidden shadow-services services-image border-2 border-myGray/30`}
                     style={{
                         rotate: `${5 * (i + 1)}deg`,
                         zIndex: layers.current[i],
@@ -146,4 +146,4 @@ const TestimonialImageReveal = ({
     );
 };
 
-export default TestimonialImageReveal;
+export default ServiceImageReveal;

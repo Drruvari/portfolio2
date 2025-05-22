@@ -38,7 +38,7 @@ const teamMembers = [
     },
 ];
 
-const testimonials = [
+const services = [
     {
         name: 'Ava Thompson',
         title: 'Product Designer at BloomTech',
@@ -103,4 +103,4 @@ const testimonials = [
 
 
 
-export { teamMembers, testimonials };
+export { teamMembers, services };

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'NeueMachina-Regular';
-    src: url(assets/fonts/PPFraktionMono-Regular.otf);
+    font-family: 'MonumentExtended-Regular';
+    src: url(assets/fonts/MonumentExtended-Regular.otf);
 }
 
 @font-face {
-    font-family: 'TypoDraftDemo';
-    src: url(assets/fonts/TypoDraftDemo.otf);
+    font-family: 'MonumentExtended-Ultrabold';
+    src: url(assets/fonts/MonumentExtended-Ultrabold.otf);
 }
 
 body {
@@ -29,8 +29,8 @@ body {
     --color-myAccent: #2469FF;
 
     /* ===== TYPOGRAPHY ===== */
-    --font-main: 'NeueMachina-Regular';
-    --font-mono: 'TypoDraftDemo';
+    --font-main: 'MonumentExtended-Regular';
+    --font-bold: 'MonumentExtended-Ultrabold';
 
     --text-14-body: 14px;
     --text-16-body--letter-spacing: 0.01ch;
@@ -75,5 +75,24 @@ body {
     --padding-mobile: 25px;
 
     /* ===== SHADOW ===== */
-    --shadow-testimonials: -10px -35px 35px 35px rgba(0, 0, 0, 0.25);
+    --shadow-services: -10px -35px 35px 35px rgba(0, 0, 0, 0.25);
+}
+
+.hidden-content {
+    --x: 0px;
+    --y: 0px;
+    --size: 1px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--color-myWhite);
+    --mask: radial-gradient(circle at var(--x) var(--y),
+            var(--color-myWhite) var(--size),
+            transparent 0);
+    -webkit-mask-image: var(--mask);
+    mask-image: var(--mask);
+    pointer-events: none;
+    visibility: hidden;
 }
