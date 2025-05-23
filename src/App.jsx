@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import CursorProvider from './components/contexts/CursorProvider'
 import CustomCursor from './components/global/CustomCursor'
+import NoiseBackground from './components/global/NoiseBackground'
 import Layout from './components/Layout'
 
 gsap.registerPlugin(CustomEase, ScrollTrigger, SplitText);
@@ -29,29 +30,32 @@ function App() {
     }, [])
 
     return (
-        <ReactLenis
-            root
-            options={{
-                lerp: 0.08,
-                smoothWheel: true,
-                autoRaf: false
-            }}
-            ref={lenisRef}
-        >
-            <CursorProvider>
-                <CustomCursor />
-                <BrowserRouter>
-                    <Routes>
-                        <Route
-                            path='/'
-                            element={
-                                <Layout />
-                            }
-                        />
-                    </Routes>
-                </BrowserRouter>
-            </CursorProvider>
-        </ReactLenis>
+        <>
+            <NoiseBackground />
+            <ReactLenis
+                root
+                options={{
+                    lerp: 0.08,
+                    smoothWheel: true,
+                    autoRaf: false
+                }}
+                ref={lenisRef}
+            >
+                <CursorProvider>
+                    <CustomCursor />
+                    <BrowserRouter>
+                        <Routes>
+                            <Route
+                                path='/'
+                                element={
+                                    <Layout />
+                                }
+                            />
+                        </Routes>
+                    </BrowserRouter>
+                </CursorProvider>
+            </ReactLenis>
+        </>
     )
 }
 

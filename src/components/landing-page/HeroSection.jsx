@@ -21,11 +21,11 @@ function HeroSection() {
     return (
         <section
             ref={heroRef}
-            className="h-screen relative bg-myBlack"
+            className="h-screen relative bg-myBlack overflow-hidden"
             data-cursor-target
         >
             <div
-                className="absolute top-[30%] md:top-1/3 px-[20px] md:px-[70px] font-main text-sm"
+                className="absolute top-[30%] md:top-1/3 px-[20px] md:px-[70px] font-main text-sm z-10"
                 style={
                     deviceWidth > 1023 && navlinksLeft < deviceWidth / 3
                         ? { left: `${navlinksLeft}px`, transform: "none" }
@@ -37,13 +37,16 @@ function HeroSection() {
                     Scroll
                 </span>
             </div>
-            <TextMask />
-            <div className="block md:hidden h-screen">
+
+            <div className="block md:hidden h-screen z-10">
                 <ScrollAnimationText textArray={textArray} animateData="top" />
             </div>
+
+            <TextMask />
             <StickyRounds />
         </section>
     );
 }
 
 export default HeroSection;
+

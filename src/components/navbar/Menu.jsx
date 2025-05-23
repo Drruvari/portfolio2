@@ -104,7 +104,7 @@ const Menu = () => {
 
     return (
         <>
-            <div className="fixed w-full h-full left-0 right-0 top-0 overflow-hidden lg:w-[450px] lg:h-[55vh] lg:min-h-[560px]  lg:left-[50%] lg:right-[unset] lg:top-[unset] lg:bottom-[102px] lg:translate-x-[-50%] z-50 pointer-events-none">
+            <div className="fixed w-full h-full left-0 right-0 top-0 overflow-hidden lg:w-[450px] lg:h-[68vh] lg:min-h-[560px]  lg:left-[50%] lg:right-[unset] lg:top-[unset] lg:bottom-[102px] lg:translate-x-[-50%] z-50 pointer-events-none">
                 <nav
                     ref={menuContainerRef}
                     className="fixed top-0 right-0 w-full h-full max-w-[500px] bg-myBlack pt-[160px] lg:py-[45px] px-mobile translate-x-[140%] lg:right-[unset] lg:left-0 lg:bottom-0 pointer-events-auto"

@@ -107,7 +107,8 @@ const Services = () => {
                         services={services}
                         activeIndex={activeIndex}
                         allowNavigation={allowNavigation}
-                        isNext={isNext} />
+                        isNext={isNext}
+                    />
                 </motion.div>
 
                 <motion.div className='w-full lg:w-[40%] xl:w-[30%] 2xl:w-[22%]'>

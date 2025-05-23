@@ -20,6 +20,14 @@ body {
     color: var(--color-myBlack);
 }
 
+@layer utilities {
+  .bg-noise {
+    @apply bg-cover;
+    /* remove the leading slash so the URL is valid */
+    background-image: url('./assets/images/background.png');
+  }
+}
+
 @theme {
     /* ===== COLOUR ===== */
     --color-myGray: #E3E3E3;
