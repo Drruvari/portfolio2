@@ -42,9 +42,9 @@ export default function ScrollAnimationText({ textArray, animateData }) {
     return (
         <div
             ref={container}
-            className="w-full h-full flex justify-center md:justify-start items-center md:items-start"
+            className="w-full h-full flex justify-center md:justify-start items-center md:items-start text-myWhite"
         >
-            <div className="w-[90%] flex flex-wrap justify-start text-[40px] md:text-8xl md:gap-y-14 md:gap-x-5 font-extrabold uppercase">
+            <div className="w-[90%] flex flex-wrap justify-start text-4xl md:text-8xl md:gap-y-14 md:gap-x-5 font-extrabold uppercase">
                 {textArray.map((item, i) => (
                     <div key={i} className="leading-[60px]">
                         {item.text.split("").map((letter, index) => (

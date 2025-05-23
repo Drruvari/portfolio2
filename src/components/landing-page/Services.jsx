@@ -7,6 +7,7 @@ import ArrowIcon from '../../assets/icons/ArrowIcon.jsx';
 import ButtonHighlight from '../buttons/ButtonHighlight.jsx';
 import { services } from '../global/DummyData.js';
 import Magnetic from '../global/Magnetic.jsx';
+import useCursor from '../hooks/useCursor.js';
 import ServiceImageReveal from './ServiceImageReveal.jsx';
 
 const Services = () => {
@@ -14,6 +15,19 @@ const Services = () => {
     const [allowNavigation, setAllowNavigation] = useState(true);
     const [isNext, setIsNext] = useState(true);
     const reviewsNo = services.length;
+    const { setCursorType, setCursorLabel, setCursorContext } = useCursor();
+
+    const onSectionEnter = () => {
+        setCursorType('hovered');
+        setCursorLabel('Services');
+        setCursorContext('section-services');
+    };
+
+    const onSectionLeave = () => {
+        setCursorType('default');
+        setCursorLabel('');
+        setCursorContext('');
+    };
 
     useGSAP(() => {
         const split = SplitText.create(".services-desc-text", {
@@ -67,6 +81,9 @@ const Services = () => {
     return (
         <section
             className="relative w-full h-[105vh] bg-myBlack text-myWhite my-[200px] p-mobile lg:p-desktop-h flex flex-col lg:flex-row justify-center items-center overflow-hidden"
+            data-cursor-target
+            onMouseEnter={onSectionEnter}
+            onMouseLeave={onSectionLeave}
         >
             {/* TITLE TEXTS */}
             <motion.div className='absolute left-0 top-0 p-mobile lg:p-desktop-h flex justify-between w-full text-14-body'>

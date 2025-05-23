@@ -1,4 +1,4 @@
-import { MoveDown, MoveRight } from "lucide-react";
+import { MoveDown } from "lucide-react";
 import { useRef } from "react";
 import StickyRounds from "../animations/StickyRounds";
 import useNavbarContext from "../contexts/useNavbarContext";
@@ -12,6 +12,7 @@ function HeroSection() {
     const heroRef = useRef(null);
 
     const textArray = [
+        { text: "Design" },
         { text: "Innovate" },
         { text: "Collaborate" },
         { text: "Deploy" },
@@ -21,6 +22,7 @@ function HeroSection() {
         <section
             ref={heroRef}
             className="h-screen relative bg-myBlack"
+            data-cursor-target
         >
             <div
                 className="absolute top-[30%] md:top-1/3 px-[20px] md:px-[70px] font-main text-sm"
@@ -30,11 +32,6 @@ function HeroSection() {
                         : {}
                 }
             >
-                <span className="hidden md:flex justify-center items-center">
-                    Hover
-                    <MoveRight />
-                </span>
-
                 <span className="flex md:hidden justify-center items-center">
                     <MoveDown />
                     Scroll

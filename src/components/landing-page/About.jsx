@@ -24,13 +24,24 @@ const About = () => {
     const { width: deviceWidth } = useDevice();
     const { setCursorType, setCursorLabel, setCursorContext } = useCursor();
 
+    const onSectionEnter = () => {
+        setCursorType('hovered');
+        setCursorLabel('About');
+        setCursorContext('section-about');
+    };
+    const onSectionLeave = () => {
+        setCursorType('default');
+        setCursorLabel('');
+        setCursorContext('');
+    };
+
     // same centering logic as Hero
     const style =
         deviceWidth > 1023 && navlinksLeft < deviceWidth / 3
             ? { left: `${navlinksLeft}px`, transform: "translateY(-50%)" }
             : {};
 
-    // on hover: trigger cursor + ripple
+    // on hover: trigger cursor  ripple
     const handleMouseEnter = (index) => (e) => {
         setCursorType("hovered");
         setCursorLabel(index);
@@ -68,7 +79,12 @@ const About = () => {
     };
 
     return (
-        <section className="w-full h-screen flex items-center relative">
+        <section
+            className="w-full h-screen flex items-center relative"
+            data-cursor-target
+            onMouseEnter={onSectionEnter}
+            onMouseLeave={onSectionLeave}
+        >
             <div
                 className={`
           absolute left-[20px] lg:left-1/2 lg:-translate-x-1/2
