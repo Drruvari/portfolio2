@@ -62,10 +62,10 @@ const DrawRandomUnderlineButton = ({ text, onClick, className = '' }) => {
             onClick={onClick}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={`relative inline-block overflow-visible px-6 py-3 uppercase font-semibold ${className}`}
+            className={`relative inline-block overflow-visible px-6 py-3 font-semibold font-mono text-[1.2rem] ${className}`}
         >
             <span ref={textRef} className="relative z-10 inline-block">
-                {text}
+                {text}.
             </span>
             <span
                 ref={boxRef}

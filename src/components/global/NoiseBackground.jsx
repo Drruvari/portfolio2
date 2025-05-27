@@ -24,7 +24,7 @@ export default function NoiseBackground() {
     return (
         <div
             ref={el}
-            className="fixed inset-0 -z-10 mix-blend-multiply bg-cover bg-noise opacity-50 pointer-events-none blur-xs"
+            className="fixed inset-0 -z-10 mix-blend-multiply bg-cover bg-noise pointer-events-none blur"
         />
     );
 }

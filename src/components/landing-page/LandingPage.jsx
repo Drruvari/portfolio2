@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import useNavbarContext from '../contexts/useNavbarContext';
 import About from './About';
 import HeroSection from './HeroSection';
+import HorizontalScrollStack from './HorizontalScrollStack';
 import Members from './Members';
 import Services from './Services';
 
@@ -11,6 +12,7 @@ const LandingPage = () => {
     const aboutRef = useRef();
     const membersRef = useRef();
     const servicesRef = useRef();
+    const scrollStackRef = useRef();
 
     useEffect(() => {
         setSectionRefs(prev => ({
@@ -19,6 +21,7 @@ const LandingPage = () => {
             about: aboutRef,
             members: membersRef,
             services: servicesRef,
+            scrollStack: scrollStackRef
         }))
     }, [setSectionRefs])
 
@@ -26,6 +29,9 @@ const LandingPage = () => {
         <div>
             <section ref={heroRef}>
                 <HeroSection />
+            </section>
+            <section ref={scrollStackRef}>
+                <HorizontalScrollStack />
             </section>
             <section ref={aboutRef}>
                 <About />

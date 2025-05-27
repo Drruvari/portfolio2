@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'MonumentExtended-Regular';
-    src: url(assets/fonts/MonumentExtended-Regular.otf);
+    font-family: 'gallery';
+    src: url(assets/fonts/gallery.regular.otf);
 }
 
 @font-face {
-    font-family: 'MonumentExtended-Ultrabold';
-    src: url(assets/fonts/MonumentExtended-Ultrabold.otf);
+    font-family: 'MonumentExtended-Regular';
+    src: url(assets/fonts/MonumentExtended-Regular.otf);
 }
 
 body {
@@ -21,24 +21,24 @@ body {
 }
 
 @layer utilities {
-  .bg-noise {
-    @apply bg-cover;
-    /* remove the leading slash so the URL is valid */
-    background-image: url('./assets/images/background.png');
-  }
+    .bg-noise {
+        @apply bg-cover;
+        /* remove the leading slash so the URL is valid */
+        background-image: url('./assets/images/background.png');
+    }
 }
 
 @theme {
     /* ===== COLOUR ===== */
     --color-myGray: #E3E3E3;
-    --color-myBlack: #141212;
+    --color-myBlack: #1A1F2B;
     --color-myDusk: #121212;
     --color-myWhite: #FDFDFD;
-    --color-myAccent: #2469FF;
+    --color-myAccent: #5DEA7C;
 
     /* ===== TYPOGRAPHY ===== */
-    --font-main: 'MonumentExtended-Regular';
-    --font-bold: 'MonumentExtended-Ultrabold';
+    --font-main: 'gallery';
+    --font-bold: 'MonumentExtended-Regular';
 
     --text-14-body: 14px;
     --text-16-body--letter-spacing: 0.01ch;

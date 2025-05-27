@@ -10,13 +10,11 @@ const CustomCursor = () => {
 
     const hideCursor = cursorType === 'none' || cursorContext === 'none';
 
-    // Initial positioning
     useEffect(() => {
         const cursor = cursorRef.current;
         const follower = followerRef.current;
         gsap.set(cursor, { xPercent: -50, yPercent: -50 });
         gsap.set(follower, { xPercent: -50, yPercent: -50 });
-
         const moveCursor = (e) => {
             gsap.to(cursor, {
                 x: e.clientX,
@@ -31,38 +29,25 @@ const CustomCursor = () => {
                 ease: "power2.out"
             });
         };
-
         window.addEventListener('mousemove', moveCursor);
         return () => window.removeEventListener('mousemove', moveCursor);
     }, []);
 
-    // Change follower style based on context
     useEffect(() => {
         const follower = followerRef.current;
         const label = follower?.querySelector('.cursor-label');
         if (!follower) return;
-
         const tl = gsap.timeline({ defaults: { duration: 0.3, ease: 'power3.out' } });
 
         if (cursorType === 'hovered') {
-            // Determine scale and styling per context
-            let scale = 1.4;
-            const styleProps = { backgroundColor: '#FDFDFD' };
+            const scale = cursorContext === "logo" ? 3 : 1.4;
+            const bgColor = '#FDFDFD';
 
-            if (cursorContext === 'logo') {
-                scale = 3;
-            } else if (cursorContext === 'nav-link') {
-                scale = 1.8;
-                styleProps.backgroundColor = 'transparent';
-                styleProps.border = '2px solid #FDFDFD';
-            }
-
-            tl.to(follower, { scale, ...styleProps }, 0)
-              .to(label, { opacity: 1, y: 0 }, 0);
+            tl.to(follower, { scale, backgroundColor: bgColor }, 0)
+                .to(label, { opacity: 1, y: 0 }, 0);
         } else {
-            // Default state
-            tl.to(follower, { scale: 1, backgroundColor: '#FDFDFD', border: 'none' }, 0)
-              .to(label, { opacity: 0, y: 10 }, 0);
+            tl.to(follower, { scale: 1, backgroundColor: '#FDFDFD' }, 0)
+                .to(label, { opacity: 0, y: 10 }, 0);
         }
 
         return () => tl.kill();
@@ -78,6 +63,7 @@ const CustomCursor = () => {
                 style={{
                     width: isHovering ? '120px' : '60px',
                     height: isHovering ? '120px' : '60px',
+                    backgroundColor: '#FDFDFD',
                     mixBlendMode: 'difference',
                     position: 'fixed',
                     pointerEvents: 'none',
@@ -94,7 +80,7 @@ const CustomCursor = () => {
                     padding: '6px',
                     boxSizing: 'border-box',
                     borderRadius: '50%',
-                    transition: 'width 0.3s, height 0.3s, background-color 0.3s, border 0.3s',
+                    transition: 'width 0.3s, height 0.3s, background-color 0.3s',
                 }}
             >
                 <span
@@ -119,8 +105,8 @@ const CustomCursor = () => {
                 className="cursor"
                 style={{
                     display: hideCursor ? 'none' : 'block',
-                    width: isHovering ? '0px' : '10px',
-                    height: isHovering ? '0px' : '10px',
+                    width: isHovering ? '0px' : '5px',
+                    height: isHovering ? '0px' : '5px',
                     backgroundColor: '#FDFDFD',
                     mixBlendMode: 'difference',
                     position: 'fixed',
