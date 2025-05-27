@@ -1,13 +1,12 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
-import { useLayoutEffect, useRef, useEffect } from "react";
-import useCursor from "../hooks/useCursor";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Logo from "../../assets/Logo";
 import DrawRandomUnderlineButton from "../buttons/DrawRandomUnderlineButton";
 import useNavbarContext from "../contexts/useNavbarContext";
 import Magnetic from "../global/Magnetic";
-import Notification from "../global/Notification";
+import useCursor from "../hooks/useCursor";
 import useDevice from "../hooks/useDevice";
 import { myEase1 } from "../utility/constants";
 import Hamburger from "./Hamburger";
@@ -141,8 +140,6 @@ const Navbar = () => {
 
     return (
         <div className="fixed top-0 w-full z-30">
-            <Notification />
-
             <div className="fixed left-[25px] top-[22px] z-30 lg:left-[35px]">
                 <Magnetic>
                     <button
@@ -173,7 +170,6 @@ const Navbar = () => {
                                 <DrawRandomUnderlineButton
                                     text={item}
                                     onClick={() => navigateToSection(item)}
-
                                     className="text-myWhite"
                                 />
                             </Magnetic>

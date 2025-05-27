@@ -9,25 +9,25 @@ const cards = [
         id: 1,
         title: 'Full Stack Development: Scalable Web Solutions',
         text: 'Leverage our expertise in MEAN.js, LAMP, and MERN stacks to build robust web applications tailored to your business needs.',
-        videoSrc: 'https://videos.pexels.com/video-files/2278095/2278095-hd_1920_1080_30fps.mp4',
+        imgSrc: 'https://images.pexels.com/photos/31005851/pexels-photo-31005851/free-photo-of-serene-riverside-scene-with-bicycle-and-benches.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
     },
     {
         id: 2,
         title: 'Agile Development: Delivering Quality Software Faster',
         text: 'Our agile methodology ensures rapid development cycles, continuous integration, and timely delivery of high-quality software solutions.',
-        videoSrc: 'https://videos.pexels.com/video-files/2516160/2516160-hd_1920_1080_24fps.mp4',
+        imgSrc: 'https://images.pexels.com/photos/31496884/pexels-photo-31496884/free-photo-of-vibrant-white-daisies-in-full-bloom-closeup.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
     },
     {
         id: 3,
         title: 'Custom API Integrations: Seamless Connectivity',
         text: 'Integrate your applications with third-party services like PayPal, Stripe, and Facebook API for enhanced functionality and user experience.',
-        videoSrc: 'https://videos.pexels.com/video-files/5377268/5377268-uhd_1440_2560_25fps.mp4',
+        imgSrc: 'https://images.pexels.com/photos/32143009/pexels-photo-32143009/free-photo-of-cable-car-descending-in-mountain-landscape.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
     },
     {
         id: 4,
         title: 'Database Solutions: Reliable and Scalable Storage',
         text: 'Our team specializes in both relational (MySQL, PostgreSQL) and NoSQL (MongoDB, Redis) databases to ensure data integrity and scalability.',
-        videoSrc: 'https://videos.pexels.com/video-files/5925291/5925291-uhd_2560_1440_24fps.mp4',
+        imgSrc: 'https://images.pexels.com/photos/32058694/pexels-photo-32058694/free-photo-of-cozy-alpine-cabins-in-misty-mountain-landscape.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     },
 ];
 
@@ -86,20 +86,16 @@ export default function HorizontalScrollStack() {
                             className="item absolute inset-0 w-screen h-full flex overflow-hidden"
                             data-index={index}
                         >
-                            <div className="w-1/2 bg-myWhite text-gray-900 p-12 flex flex-col justify-center relative">
+                            <div className="w-1/2 bg-myWhite text-myBlack p-12 flex flex-col justify-center relative">
                                 <div className="absolute top-24 left-12 h-12 w-12 mb-2 rounded-full bg-myBlack text-myWhite flex items-center justify-center font-normal text-base">
                                     {card.id}
                                 </div>
                                 <h2 className="text-2xl font-bold mb-4">{card.title}</h2>
                                 <p>{card.text}</p>
                             </div>
-                            <video
-                                src={card.videoSrc}
-                                className="w-1/2 h-full object-cover"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
+                            <img
+                                src={card.imgSrc}
+                                className="w-1/2 h-full object-cover object-center"
                             />
                         </div>
                     ))}

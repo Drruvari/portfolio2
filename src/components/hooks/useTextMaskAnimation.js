@@ -26,7 +26,7 @@ export default function useTextMaskAnimation() {
             .fromTo(
                 ".hidden-content",
                 { "--size": 0 },
-                { "--size": 300, duration: 0.4, ease: "back.out(1.7)" }
+                { "--size": 150, duration: 0.4, ease: "back.out(1.7)" }
             );
 
         // First move: reveal the mask and start tracking
